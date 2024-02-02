@@ -1,0 +1,50 @@
+tests/tiktok/test_tiktok.py::TiktokAudit::test_like
+--------------------------------------------------------------------
+Last Page: [WARNING! Browser Not Open!]
+ Duration: 116.94s
+  Browser: Chrome 121.0.6167.139
+   Driver: chromedriver 121.0.6167.85
+Timestamp: 1706898707  (Unix Timestamp)
+     Date: Friday, February 2, 2024
+     Time: 1:31:47 PM  (EDT, UTC-04:00)
+--------------------------------------------------------------------
+Traceback:
+  File "/Users/ihoonsun/Desktop/cs 315/project1/tiktok-like-experiment/tests/tiktok/test_tiktok.py", line 6, in test_like
+    self.like_posts(1)
+  File "/Users/ihoonsun/Desktop/cs 315/project1/tiktok-like-experiment/page_objects/PageTiktok.py", line 46, in like_posts
+    self.helper_like(retry)
+  File "/Users/ihoonsun/Desktop/cs 315/project1/tiktok-like-experiment/page_objects/PageTiktok.py", line 50, in helper_like
+    self.chromebrowser.uc_open_with_reconnect('https://www.tiktok.com/en/',reconnect_time=5)
+  File "/Users/ihoonsun/.virtualenvs/venv/lib/python3.11/site-packages/seleniumbase/core/browser_launcher.py", line 3691, in <lambda>
+    lambda *args, **kwargs: uc_open_with_reconnect(
+                            ^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/ihoonsun/.virtualenvs/venv/lib/python3.11/site-packages/seleniumbase/core/browser_launcher.py", line 429, in uc_open_with_reconnect
+    driver.switch_to.window(driver.window_handles[-1])
+                            ^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/ihoonsun/.virtualenvs/venv/lib/python3.11/site-packages/seleniumbase/undetected/__init__.py", line 326, in __getattribute__
+    return super().__getattribute__(item)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/ihoonsun/.virtualenvs/venv/lib/python3.11/site-packages/selenium/webdriver/remote/webdriver.py", line 494, in window_handles
+    return self.execute(Command.W3C_GET_WINDOW_HANDLES)["value"]
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/ihoonsun/.virtualenvs/venv/lib/python3.11/site-packages/selenium/webdriver/remote/webdriver.py", line 347, in execute
+    self.error_handler.check_response(response)
+  File "/Users/ihoonsun/.virtualenvs/venv/lib/python3.11/site-packages/selenium/webdriver/remote/errorhandler.py", line 229, in check_response
+    raise exception_class(message, screen, stacktrace)
+Exception: Message: invalid session id
+Stacktrace:
+0   uc_driver                           0x000000010105a168 uc_driver + 4673896
+1   uc_driver                           0x00000001010519c3 uc_driver + 4639171
+2   uc_driver                           0x0000000100c45deb uc_driver + 396779
+3   uc_driver                           0x0000000100c83b17 uc_driver + 650007
+4   uc_driver                           0x0000000100cb47a4 uc_driver + 849828
+5   uc_driver                           0x0000000100caf2b2 uc_driver + 828082
+6   uc_driver                           0x0000000100caeb2d uc_driver + 826157
+7   uc_driver                           0x0000000100c126df uc_driver + 186079
+8   uc_driver                           0x000000010101a380 uc_driver + 4412288
+9   uc_driver                           0x000000010101f798 uc_driver + 4433816
+10  uc_driver                           0x0000000100ffed71 uc_driver + 4300145
+11  uc_driver                           0x00000001010204e6 uc_driver + 4437222
+12  uc_driver                           0x0000000100ff0d3c uc_driver + 4242748
+13  uc_driver                           0x0000000100c10f95 uc_driver + 180117
+14  dyld                                0x0000000201e9b386 start + 1942
