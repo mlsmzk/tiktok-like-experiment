@@ -3,6 +3,7 @@ CS315 project testing how likes affect a user's recommendation algorithm using S
 
 By: Miles Mezaki, Sandy Liu, Sarah Goldman, Caroline Jung, Johanna Lee, Audrey Liang
 
+### The TikTok audit code is in the PageTiktok.py file in the page_objects folder. chrome_audit has not been updated.
 
 ## how to run test:
 1. open vscode
