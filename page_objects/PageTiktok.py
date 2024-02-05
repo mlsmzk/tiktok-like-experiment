@@ -7,6 +7,7 @@ from random import randint
 from selenium.common.exceptions import ElementClickInterceptedException, StaleElementReferenceException, NoSuchElementException
 from selenium.webdriver.common.action_chains import ActionChains
 import html
+import re
 
 """
 1 batch = the number of posts available on page before scrolling down and loading more.
@@ -105,25 +106,38 @@ class PageTiktok(BaseCase): #inherit BaseCase
         login.click()
  
     def like_video(self, video):
+        """
+        returns if the video was successfully liked
+        """
+        like_successful = False
         try:
             like_button = video.find_elements(By.XPATH, ".//*[@class='css-1ok4pbl-ButtonActionItem e1hk3hf90']")[0]
             self.chromebrowser.execute_script("arguments[0].click();", like_button)
+            like_successful = True
             print(f"Clicked button {like_button.get_attribute('aria-label')} using JavaScript")
             time.sleep(1)
         except ElementClickInterceptedException:
             print(f"ElementClickInterceptedException: Could not click the button")
             pass
+        return like_successful
     
     def like_videos_with_hashtag(self,current_batch,predefined_hashtag_list):
         """
         in each video in current_batch, like it iff it contains a hashtag in the predefined hashtag list
         """
+        num_of_posts_with_hashtag = 0
+        num_of_posts_clicked = 0
         current_batch_info = self.info_videos(current_batch)
         for video_info in current_batch_info:
             if video_info["hashtag"]:
                 if set(video_info["hashtag"]) & set(predefined_hashtag_list):
-                    self.like_video(video_info["video"])
-    
+                    num_of_posts_with_hashtag += 1
+                    if self.like_video(video_info["video"]): #if video was successfully liked
+                        num_of_posts_clicked += 1
+        print(f"\nThere are #{num_of_posts_with_hashtag} videos with predefined hashtags \n and #{num_of_posts_clicked} posts were liked successfully")
+
+
+
     def update_batch(self):
         """
         updates batch by scrolling to the bottom 
@@ -141,7 +155,7 @@ class PageTiktok(BaseCase): #inherit BaseCase
         print(f"\n***length of old all videos on page:{len(old_all_videos)}")
 
         self.current_batch = set(old_all_videos) ^ set(self.chromebrowser.find_elements(By.XPATH, '//*[@class="css-14bp9b0-DivItemContainer etvrc4k0"]'))
-        print(f"Is there no overlap between old batch and new batch?:{self.validate_no_overlapping_post(old_batch, self.current_batch)}")
+        print(f"\nIs there no overlap between old batch and new batch?:{self.validate_no_overlapping_post(old_batch, self.current_batch)}")
         
         self.all_videos_on_page = self.chromebrowser.find_elements(By.XPATH, '//*[@class="css-14bp9b0-DivItemContainer etvrc4k0"]')
         #print(f"\n***new all videos on page: {self.info_videos(self.all_videos_on_page)}")
@@ -169,8 +183,9 @@ class PageTiktok(BaseCase): #inherit BaseCase
         like posts in current batch after updating, then move on to the next batch
         """
         num_batches = 5
-        while self.update_batch() and num_batches > 0: #if new batch appeared on foryou page
+        while num_batches > 0: #if new batch appeared on foryou page
             print(f"\n****ENTERING BATCH{6-num_batches}\n")
+            self.update_batch()
             num_batches -= 1
             self.like_videos_with_hashtag(self.current_batch,self.predefined_hashtag_list)
             time.sleep(10)
