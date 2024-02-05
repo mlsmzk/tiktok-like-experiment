@@ -17,3 +17,4 @@ Currently, the code successfully identifies posts with **predefined hashtags** (
 - ElementClickInterception for some posts that are supposed to be liked
 - randomly like posts (scenario 2)
 - like posts with specific creator/sound (scenario 3)
+- what information to store from html page
