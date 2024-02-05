@@ -4,72 +4,122 @@ from selenium.webdriver.common.by import By # contains operators for the type of
 import time
 from seleniumbase import BaseCase
 from random import randint
-from selenium.common.exceptions import ElementClickInterceptedException, StaleElementReferenceException
+from selenium.common.exceptions import ElementClickInterceptedException, StaleElementReferenceException, NoSuchElementException
+from selenium.webdriver.common.action_chains import ActionChains
+
+"""
+1 batch = the number of posts available on page before scrolling down and loading more.
+"""
 
 class PageTiktok(BaseCase): #inherit BaseCase
+    predefined_hashtag_list = []
     chromebrowser = Driver(uc=True)
-    
+    actions = ActionChains(chromebrowser)
+    current_batch = []
+    len_all_posts = None
+    all_videos_on_page = []
+
+    def info_videos(self,videoList):
+        '''
+        when given a list of video divs, return a summary of each video
+        [{web_element: video, index:1, hashtag:[], num_comment = {}}, ...]
+        '''
+        summary = []
+        for index, video in enumerate(videoList):
+            summary.append({"index":index, "video":video, "hashtag":self.get_hashtag(video)})
+
+        return summary
+
+    def get_hashtag(self,video):
+        hashtag_list = video.find_elements(By.XPATH, './/*[@class="ejg0rhn6 css-g8ml1x-StyledLink-StyledCommonLink er1vbsz0"]')
+        if hashtag_list:
+            return [hashtag.get_attribute('href').split('/')[-1] for hashtag in hashtag_list]
+        else:
+            return []
+        
+
     def fetch_tiktok(self):
         self.chromebrowser.uc_open_with_reconnect('https://www.tiktok.com/en/',reconnect_time=5) #link to login page
-        time.sleep(25)
+        time.sleep(20)
+
+        #initialize values
+        try:
+            self.current_batch = self.chromebrowser.find_elements(By.XPATH, '//*[@class="css-14bp9b0-DivItemContainer etvrc4k0"]')
+            self.all_videos_on_page = self.current_batch
+            self.len_all_posts = len(self.all_videos_on_page)
+        except StaleElementReferenceException:
+            self.fetch_tiktok()
         
     def login(self):
-        time.sleep(1)
-
         # click "use phone/number/email" on login page
         use_email = self.chromebrowser.find_element(By.XPATH, "/html/body/div[5]/div[3]/div/div/div/div[1]/div/div/div[1]/div[2]/div[2]")
         use_email.click()
-
-        time.sleep(4)
-
         # click "login with email or username"
         self.chromebrowser.find_element(By.XPATH, "/html/body/div[5]/div[3]/div/div/div/div[1]/div[2]/form/div[1]/a").click()
-
         time.sleep(1)
-
         input_username = self.chromebrowser.find_element(By.XPATH, "/html/body/div[5]/div[3]/div/div/div/div[1]/div[2]/form/div[1]/input")
         input_password = self.chromebrowser.find_element(By.XPATH, "/html/body/div[5]/div[3]/div/div/div/div[1]/div[2]/form/div[2]/div/input")
-
         input_username.send_keys(self.email)
         input_password.send_keys(self.password)
-
         time.sleep(3)
-
         login = self.chromebrowser.find_element(By.XPATH, "/html/body/div[5]/div[3]/div/div/div/div[1]/div[2]/form/button")
         login.click()
+ 
+    def like_video(self,video):
+        '''
+        likes a video passed in parameter
+        '''
+        try:
+            like_button = video.find_elements(By.XPATH, "css-1ok4pbl-ButtonActionItem e1hk3hf90")[0]
+            print(f"clicked button {like_button.get_attribute('aria-label')}")
+            time.sleep(0.5)
+        except ElementClickInterceptedException:
+            print(f"elementclickexception")
+            pass
     
-    def like_posts(self, trial):
-        print(f"ENTERING TRIAL {trial}")
-        retry = 0
-        while retry <= 2:
-            retry += 1
-            self.helper_like(retry)
+    def like_videos_with_hashtag(self,current_batch,predefined_hashtag_list):
+        """
+        in each video in current_batch, like it iff it contains a hashtag in the predefined hashtag list
+        """
+        current_batch_info = self.info_videos(current_batch)
+        for video_info in current_batch_info:
+            video_info["hashtag"]
     
-    def helper_like(self,retry):
-            print(f"#{retry} retry")
-            self.chromebrowser.uc_open_with_reconnect('https://www.tiktok.com/en/',reconnect_time=5)
-            try:
-                button_list = self.chromebrowser.find_elements(By.XPATH, '//*[@class="css-1ok4pbl-ButtonActionItem e1hk3hf90"]')
-                print(f"{retry}:# like buttons",len(button_list)//4)
-                print("was able to get attribute of these like buttons:\n")
-                for i, post_button in enumerate(button_list):
-                    if i % 4 == 0: #if like button
-                        print(post_button.get_attribute("aria-label"))
-                        time.sleep(0.5)
+    def update_batch(self):
+        """
+        updates batch by scrolling to the bottom 
+        """
+        self.actions.move_to_element(self.all_videos_on_page[-1]).perform()
+        time.sleep(5)
+        old_batch = self.current_batch
+        old_all_videos = self.all_videos_on_page
+        print(f"***old batch:{self.info_videos(old_batch)}\n")
+        print(f"\n***length of old batch: {len(old_batch)}\n")
 
-                for i, post_button in enumerate(button_list):
-                    if i % 4 == 0:
-                        try:
-                            post_button.click()
-                            print(f"clicked button #{i//4}")
-                            time.sleep(0.5)
-                        except ElementClickInterceptedException:
-                            print(f"elementclickexception at like #{i//4}")
-                            pass
-                time.sleep(6)
+        print(f"\n***old all videos on page: {self.info_videos(old_all_videos)}")
+        print(f"\n***length of old all videos on page:{len(old_all_videos)}")
 
-            except StaleElementReferenceException:
-                print("stale element:reload") 
+        self.current_batch = set(old_all_videos) ^ set(self.chromebrowser.find_elements(By.XPATH, '//*[@class="css-14bp9b0-DivItemContainer etvrc4k0"]'))
+        print(f"Is there no overlap between old batch and new batch?:{self.validate_no_overlapping_post(old_batch, self.current_batch)}")
+        
+        self.all_videos_on_page = self.chromebrowser.find_elements(By.XPATH, '//*[@class="css-14bp9b0-DivItemContainer etvrc4k0"]')
+        print(f"\n***new all videos on page: {self.info_videos(self.all_videos_on_page)}")
+        print(f"\n***length of new all videos on page:{len(self.all_videos_on_page)}")
+        if self.current_batch:
+            print(f"\n***new batch: {self.info_videos(self.current_batch)}")
+            print(f"\n***length of new batch: {len(self.current_batch)}\n")
+        else:
+            print("\n!!!!no new posts were added!!!!\n")
+
+
+    def validate_no_overlapping_post(self, oldbatch, newbatch):
+        ''''
+        validates that the the oldbatch and the new batch (videolists) does not overlap
+        '''
+        return (not (set(oldbatch) & set(newbatch)))
+
+  
+    
 
 
 
