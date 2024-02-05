@@ -79,7 +79,7 @@ class PageTiktok(BaseCase): #inherit BaseCase
             like_button = video.find_elements(By.XPATH, ".//*[@class='css-1ok4pbl-ButtonActionItem e1hk3hf90']")[0]
             like_button.click()
             print(f"clicked button {like_button.get_attribute('aria-label')}")
-            time.sleep(0.5)
+            time.sleep(1)
         except ElementClickInterceptedException:
             print(f"elementclickexception")
             pass
@@ -138,10 +138,13 @@ class PageTiktok(BaseCase): #inherit BaseCase
         """
         like posts in current batch after updating, then move on to the next batch
         """
-        while self.update_batch(): #if new batch appeared on foryou page
+        num_batches = 5
+        while self.update_batch() and num_batches > 0: #if new batch appeared on foryou page
+            print(f"\n****ENTERING BATCH{6-num_batches}\n")
+            num_batches -= 1
             self.like_videos_with_hashtag(self.current_batch,self.predefined_hashtag_list)
-            time.sleep(5)
-
+            time.sleep(10)
+        
     
 
   
