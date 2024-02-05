@@ -12,7 +12,7 @@ from selenium.webdriver.common.action_chains import ActionChains
 """
 
 class PageTiktok(BaseCase): #inherit BaseCase
-    predefined_hashtag_list = []
+    predefined_hashtag_list = ["viral","foryou"]
     chromebrowser = Driver(uc=True)
     actions = ActionChains(chromebrowser)
     current_batch = []
@@ -39,6 +39,9 @@ class PageTiktok(BaseCase): #inherit BaseCase
         
 
     def fetch_tiktok(self):
+        """
+        open tiktok, provide time for manual log in, fill in the current_batch with the posts preloaded on screen
+        """
         self.chromebrowser.uc_open_with_reconnect('https://www.tiktok.com/en/',reconnect_time=5) #link to login page
         time.sleep(20)
 
@@ -51,6 +54,9 @@ class PageTiktok(BaseCase): #inherit BaseCase
             self.fetch_tiktok()
         
     def login(self):
+        """
+        not used. Manually log in instead, have to close the 2 popups on the bottom right
+        """
         # click "use phone/number/email" on login page
         use_email = self.chromebrowser.find_element(By.XPATH, "/html/body/div[5]/div[3]/div/div/div/div[1]/div/div/div[1]/div[2]/div[2]")
         use_email.click()
@@ -70,7 +76,8 @@ class PageTiktok(BaseCase): #inherit BaseCase
         likes a video passed in parameter
         '''
         try:
-            like_button = video.find_elements(By.XPATH, "css-1ok4pbl-ButtonActionItem e1hk3hf90")[0]
+            like_button = video.find_elements(By.XPATH, ".//*[@class='css-1ok4pbl-ButtonActionItem e1hk3hf90']")[0]
+            like_button.click()
             print(f"clicked button {like_button.get_attribute('aria-label')}")
             time.sleep(0.5)
         except ElementClickInterceptedException:
@@ -83,12 +90,16 @@ class PageTiktok(BaseCase): #inherit BaseCase
         """
         current_batch_info = self.info_videos(current_batch)
         for video_info in current_batch_info:
-            video_info["hashtag"]
+            if video_info["hashtag"]:
+                if set(video_info["hashtag"]) & set(predefined_hashtag_list):
+                    self.like_video(video_info["video"])
     
     def update_batch(self):
         """
         updates batch by scrolling to the bottom 
         """
+        current_batch_exists = False
+
         self.actions.move_to_element(self.all_videos_on_page[-1]).perform()
         time.sleep(5)
         old_batch = self.current_batch
@@ -96,20 +107,24 @@ class PageTiktok(BaseCase): #inherit BaseCase
         print(f"***old batch:{self.info_videos(old_batch)}\n")
         print(f"\n***length of old batch: {len(old_batch)}\n")
 
-        print(f"\n***old all videos on page: {self.info_videos(old_all_videos)}")
+        #print(f"\n***old all videos on page: {self.info_videos(old_all_videos)}")
         print(f"\n***length of old all videos on page:{len(old_all_videos)}")
 
         self.current_batch = set(old_all_videos) ^ set(self.chromebrowser.find_elements(By.XPATH, '//*[@class="css-14bp9b0-DivItemContainer etvrc4k0"]'))
         print(f"Is there no overlap between old batch and new batch?:{self.validate_no_overlapping_post(old_batch, self.current_batch)}")
         
         self.all_videos_on_page = self.chromebrowser.find_elements(By.XPATH, '//*[@class="css-14bp9b0-DivItemContainer etvrc4k0"]')
-        print(f"\n***new all videos on page: {self.info_videos(self.all_videos_on_page)}")
+        #print(f"\n***new all videos on page: {self.info_videos(self.all_videos_on_page)}")
         print(f"\n***length of new all videos on page:{len(self.all_videos_on_page)}")
-        if self.current_batch:
+
+        if self.current_batch: #if new videos were loaded
             print(f"\n***new batch: {self.info_videos(self.current_batch)}")
             print(f"\n***length of new batch: {len(self.current_batch)}\n")
+            current_batch_exists = True
         else:
             print("\n!!!!no new posts were added!!!!\n")
+        
+        return current_batch_exists
 
 
     def validate_no_overlapping_post(self, oldbatch, newbatch):
@@ -117,6 +132,17 @@ class PageTiktok(BaseCase): #inherit BaseCase
         validates that the the oldbatch and the new batch (videolists) does not overlap
         '''
         return (not (set(oldbatch) & set(newbatch)))
+    
+
+    def iterate_through_batches(self):
+        """
+        like posts in current batch after updating, then move on to the next batch
+        """
+        while self.update_batch(): #if new batch appeared on foryou page
+            self.like_videos_with_hashtag(self.current_batch,self.predefined_hashtag_list)
+            time.sleep(5)
+
+    
 
   
     
