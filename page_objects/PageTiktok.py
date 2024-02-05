@@ -6,6 +6,7 @@ from seleniumbase import BaseCase
 from random import randint
 from selenium.common.exceptions import ElementClickInterceptedException, StaleElementReferenceException, NoSuchElementException
 from selenium.webdriver.common.action_chains import ActionChains
+import html
 
 """
 1 batch = the number of posts available on page before scrolling down and loading more.
@@ -19,29 +20,61 @@ class PageTiktok(BaseCase): #inherit BaseCase
     len_all_posts = None
     all_videos_on_page = []
 
-    def info_videos(self,videoList):
+    def info_videos(self, videoList):
         '''
-        when given a list of video divs, return a summary of each video
-        [{web_element: video, index:1, hashtag:[], num_comment = {}}, ...]
+        When given a list of video divs, return a summary of each video
+        [{'index': 1, 'video': web_element, 'hashtag': [], 'author': 'author_name', 'likes': 123}, ...]
         '''
         summary = []
         for index, video in enumerate(videoList):
-            summary.append({"index":index, "video":video, "hashtag":self.get_hashtag(video)})
+            author = self.get_author(video)
+            likes = self.get_likes(video)
+            hashtag = self.get_hashtag(video)
+            summary.append({'index': index, 'video': video, 'hashtag': hashtag, 'author': author, 'likes': likes})
 
         return summary
 
-    def get_hashtag(self,video):
-        hashtag_list = video.find_elements(By.XPATH, './/*[@class="ejg0rhn6 css-g8ml1x-StyledLink-StyledCommonLink er1vbsz0"]')
-        if hashtag_list:
-            return [hashtag.get_attribute('href').split('/')[-1] for hashtag in hashtag_list]
-        else:
+    def get_author(self, video):
+        try:
+            author_element = video.find_element(By.XPATH, ".//*[@class='css-1k5oywg-H3AuthorTitle emt6k1z0']")
+            return author_element.text if author_element else None
+        except NoSuchElementException:
+            print("Author element not found.")
+            return None
+
+    def get_likes(self, video):
+        try:
+            like_button = video.find_elements(By.XPATH, ".//*[@class='css-1ok4pbl-ButtonActionItem e1hk3hf90']")[0]
+            like_text = like_button.get_attribute('aria-label')
+            
+            # Extract numerical value using regex
+            match = re.search(r'(\d+\.\d+|\d+)K', like_text)
+            if match:
+                likes = float(match.group(1)) * 1000  # Convert K to actual number
+                return int(likes)
+            else:
+                return 0
+
+        except (NoSuchElementException, ValueError):
+            print("Unable to retrieve the number of likes")
+            return 0
+
+
+    def get_hashtag(self, video):
+        try:
+            hashtag_list = video.find_elements(By.XPATH, './/*[@class="ejg0rhn6 css-g8ml1x-StyledLink-StyledCommonLink er1vbsz0"]')
+            if hashtag_list:
+                return [hashtag.get_attribute('href').split('/')[-1] for hashtag in hashtag_list]
+            else:
+                return []
+        except NoSuchElementException:
+            print("Hashtag element not found.")
             return []
-        
 
     def fetch_tiktok(self):
         """
         open tiktok, provide time for manual log in, fill in the current_batch with the posts preloaded on screen
-        """
+        """ 
         self.chromebrowser.uc_open_with_reconnect('https://www.tiktok.com/en/',reconnect_time=5) #link to login page
         time.sleep(20)
 
@@ -71,17 +104,14 @@ class PageTiktok(BaseCase): #inherit BaseCase
         login = self.chromebrowser.find_element(By.XPATH, "/html/body/div[5]/div[3]/div/div/div/div[1]/div[2]/form/button")
         login.click()
  
-    def like_video(self,video):
-        '''
-        likes a video passed in parameter
-        '''
+    def like_video(self, video):
         try:
             like_button = video.find_elements(By.XPATH, ".//*[@class='css-1ok4pbl-ButtonActionItem e1hk3hf90']")[0]
-            like_button.click()
-            print(f"clicked button {like_button.get_attribute('aria-label')}")
+            self.chromebrowser.execute_script("arguments[0].click();", like_button)
+            print(f"Clicked button {like_button.get_attribute('aria-label')} using JavaScript")
             time.sleep(1)
         except ElementClickInterceptedException:
-            print(f"elementclickexception")
+            print(f"ElementClickInterceptedException: Could not click the button")
             pass
     
     def like_videos_with_hashtag(self,current_batch,predefined_hashtag_list):
