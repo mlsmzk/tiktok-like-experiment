@@ -1,10 +1,11 @@
 from page_objects.PageTiktok import PageTiktok
+import time
 
 class TiktokAudit(PageTiktok):
     def test_like(self):
         self.fetch_tiktok()
-        self.like_posts(1)
-        self.like_posts(2)
+        self.iterate_through_batches()
+        time.sleep(20)
 
     
 
