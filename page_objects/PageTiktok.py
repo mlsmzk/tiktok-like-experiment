@@ -207,7 +207,7 @@ class PageTiktok(BaseCase): #inherit BaseCase
         return (not (set(oldbatch) & set(newbatch)))
     
 
-    def iterate_through_batches_like_by_hashtag(self):
+    def iterate_through_batches_like_by_hashtag(self, filename="like_by_hashtag_data.csv"):
         """
         Like posts in current batch after updating, then move on to the next batch
         """
@@ -222,25 +222,30 @@ class PageTiktok(BaseCase): #inherit BaseCase
             time.sleep(10)
             
             current_batch_info = self.info_videos(self.current_batch)
-            self.write_to_csv(current_batch_info)
+            self.write_to_csv(current_batch_info, filename)
         
-    def iterate_through_batches_like_random(self, batches=5):
+    def iterate_through_batches_like_random(self, batches=5, filename="like_by_random_data.csv"):
+        """
+        Like posts in current batch after updating randomly, then move on to the next batch
+        """
+        self.batch_num = 0
         while batches > 0:
             print(f"\n****BATCH #{6-batches}\n")
             self.update_batch()
             batches -= 1
+            self.batch_num += 1
             self.like_videos_random(self.current_batch)
             time.sleep(5)
 
-            ## Uncomment this if want data from random liking
-            #current_batch_info = self.info_videos(self.current_batch)
-            #self.write_to_csv(current_batch_info)
+            # Uncomment this if want data from random liking
+            current_batch_info = self.info_videos(self.current_batch)
+            self.write_to_csv(current_batch_info, filename)
 
-    def write_to_csv(self, data):
+    def write_to_csv(self, data, filename="tiktok_data.csv"):
         """
         Write data to a CSV file
         """
-        csv_file_path = "tiktok_data.csv"
+        csv_file_path = filename
 
         with open(csv_file_path, 'a', newline='', encoding='utf-8') as csv_file:
             fieldnames = ['batch', 'index', 'hashtag', 'author', 'likes']
