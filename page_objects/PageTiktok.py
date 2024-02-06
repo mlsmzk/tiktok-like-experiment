@@ -8,6 +8,7 @@ from selenium.common.exceptions import ElementClickInterceptedException, StaleEl
 from selenium.webdriver.common.action_chains import ActionChains
 import html
 import re
+import numpy as np
 
 """
 1 batch = the number of posts available on page before scrolling down and loading more.
@@ -77,7 +78,7 @@ class PageTiktok(BaseCase): #inherit BaseCase
         open tiktok, provide time for manual log in, fill in the current_batch with the posts preloaded on screen
         """ 
         self.chromebrowser.uc_open_with_reconnect('https://www.tiktok.com/en/',reconnect_time=5) #link to login page
-        time.sleep(20)
+        time.sleep(40)
 
         #initialize values
         try:
@@ -104,7 +105,7 @@ class PageTiktok(BaseCase): #inherit BaseCase
         time.sleep(3)
         login = self.chromebrowser.find_element(By.XPATH, "/html/body/div[5]/div[3]/div/div/div/div[1]/div[2]/form/button")
         login.click()
- 
+    
     def like_video(self, video):
         """
         returns if the video was successfully liked
@@ -120,6 +121,34 @@ class PageTiktok(BaseCase): #inherit BaseCase
             print(f"ElementClickInterceptedException: Could not click the button")
             pass
         return like_successful
+    
+    def flip(self, prob):
+        """
+        Return True with probability prob, and False otherwise
+
+        Args:
+        prob: a float from 0 to 1, the probability of returning True
+
+        Return:
+        True with probability prob, False with probability (1-prob)
+        """
+        return np.random.random() < prob
+
+    def like_videos_random(self,current_batch):
+        """
+        returns if the video was successfully liked
+        """
+        """
+        in each video in current_batch, like it iff it contains a hashtag in the predefined hashtag list
+        """
+        num_of_posts_clicked = 0
+        current_batch_info = self.info_videos(current_batch)
+        for video_info in current_batch_info:
+            if self.flip(0.5):
+                if self.like_video(video_info['video']):
+                    num_of_posts_clicked += 1
+        
+        print(f"\nThere are #{len(current_batch_info)} videos \n and #{num_of_posts_clicked} posts were randomly liked successfully")
     
     def like_videos_with_hashtag(self,current_batch,predefined_hashtag_list):
         """
@@ -178,7 +207,7 @@ class PageTiktok(BaseCase): #inherit BaseCase
         return (not (set(oldbatch) & set(newbatch)))
     
 
-    def iterate_through_batches(self):
+    def iterate_through_batches_like_by_hashtag(self):
         """
         like posts in current batch after updating, then move on to the next batch
         """
@@ -190,8 +219,13 @@ class PageTiktok(BaseCase): #inherit BaseCase
             self.like_videos_with_hashtag(self.current_batch,self.predefined_hashtag_list)
             time.sleep(10)
         
-    
-
+    def iterate_through_batches_like_random(self, batches=5):
+        while batches > 0:
+            print(f"\n****BATCH #{6-batches}\n")
+            self.update_batch()
+            batches -= 1
+            self.like_videos_random(self.current_batch)
+            time.sleep(5)
   
     
 
