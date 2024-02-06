@@ -9,7 +9,7 @@ class TiktokAudit(PageTiktok):
 
     def test_like_random(self):
         self.fetch_tiktok()
-        self.iterate_through_batches_like_random(filename="random_like_data.csv")
+        self.iterate_through_batches_like_random()
         time.sleep(10)
 
 
