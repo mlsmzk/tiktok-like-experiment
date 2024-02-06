@@ -11,6 +11,7 @@ import re
 import numpy as np
 import csv
 from datetime import datetime
+import os 
 
 """
 1 batch = the number of posts available on page before scrolling down and loading more.
@@ -23,6 +24,7 @@ class PageTiktok(BaseCase): #inherit BaseCase
     current_batch = []
     len_all_posts = None
     all_videos_on_page = []
+    current_time = datetime.now().strftime("%H-%M-%m-%d")
 
     
     def info_videos(self, videoList):
@@ -271,8 +273,8 @@ class PageTiktok(BaseCase): #inherit BaseCase
         """
         Write data to a CSV file
         """
-        now = datetime.now().strftime("%H-%m-%d")
-        csv_file_path = f"./data/{now}_{filename}"
+
+        csv_file_path = f"./data/{self.current_time}_{filename}.csv"
 
         with open(csv_file_path, 'a', newline='', encoding='utf-8') as csv_file:
             fieldnames = ['batch', 'index', 'music', 'hashtag', 'author', 'likes']
@@ -280,7 +282,7 @@ class PageTiktok(BaseCase): #inherit BaseCase
 
             for video_info in data:
                 writer.writerow({
-                    'batch': video_info['batch'],
+                    'batch': video_info['batch'], 
                     'index': video_info['index'],
                     'music': video_info['music'],
                     #'video': video_info['video'],
