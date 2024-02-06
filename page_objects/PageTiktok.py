@@ -9,6 +9,7 @@ from selenium.webdriver.common.action_chains import ActionChains
 import html
 import re
 import numpy as np
+import csv
 
 """
 1 batch = the number of posts available on page before scrolling down and loading more.
@@ -22,6 +23,7 @@ class PageTiktok(BaseCase): #inherit BaseCase
     len_all_posts = None
     all_videos_on_page = []
 
+    
     def info_videos(self, videoList):
         '''
         When given a list of video divs, return a summary of each video
@@ -32,7 +34,8 @@ class PageTiktok(BaseCase): #inherit BaseCase
             author = self.get_author(video)
             likes = self.get_likes(video)
             hashtag = self.get_hashtag(video)
-            summary.append({'index': index, 'video': video, 'hashtag': hashtag, 'author': author, 'likes': likes})
+            batch_number = self.batch_num
+            summary.append({'batch': batch_number, 'index': index, 'video': video, 'hashtag': hashtag, 'author': author, 'likes': likes})
 
         return summary
 
@@ -138,9 +141,6 @@ class PageTiktok(BaseCase): #inherit BaseCase
         """
         returns if the video was successfully liked
         """
-        """
-        in each video in current_batch, like it iff it contains a hashtag in the predefined hashtag list
-        """
         num_of_posts_clicked = 0
         current_batch_info = self.info_videos(current_batch)
         for video_info in current_batch_info:
@@ -209,15 +209,20 @@ class PageTiktok(BaseCase): #inherit BaseCase
 
     def iterate_through_batches_like_by_hashtag(self):
         """
-        like posts in current batch after updating, then move on to the next batch
+        Like posts in current batch after updating, then move on to the next batch
         """
         num_batches = 5
-        while num_batches > 0: #if new batch appeared on foryou page
+        self.batch_num = 0
+        while num_batches > 0:  # if new batch appeared on foryou page
             print(f"\n****ENTERING BATCH{6-num_batches}\n")
             self.update_batch()
             num_batches -= 1
-            self.like_videos_with_hashtag(self.current_batch,self.predefined_hashtag_list)
+            self.batch_num += 1
+            self.like_videos_with_hashtag(self.current_batch, self.predefined_hashtag_list)
             time.sleep(10)
+            
+            current_batch_info = self.info_videos(self.current_batch)
+            self.write_to_csv(current_batch_info)
         
     def iterate_through_batches_like_random(self, batches=5):
         while batches > 0:
@@ -226,6 +231,30 @@ class PageTiktok(BaseCase): #inherit BaseCase
             batches -= 1
             self.like_videos_random(self.current_batch)
             time.sleep(5)
+
+            ## Uncomment this if want data from random liking
+            #current_batch_info = self.info_videos(self.current_batch)
+            #self.write_to_csv(current_batch_info)
+
+    def write_to_csv(self, data):
+        """
+        Write data to a CSV file
+        """
+        csv_file_path = "tiktok_data.csv"
+
+        with open(csv_file_path, 'a', newline='', encoding='utf-8') as csv_file:
+            fieldnames = ['batch', 'index', 'hashtag', 'author', 'likes']
+            writer = csv.DictWriter(csv_file, fieldnames=fieldnames)
+
+            for video_info in data:
+                writer.writerow({
+                    'batch': video_info['batch'],
+                    'index': video_info['index'],
+                    #'video': video_info['video'],
+                    'hashtag': ', '.join(video_info['hashtag']),  # Convert list to comma-separated string
+                    'author': video_info['author'],
+                    'likes': video_info['likes']
+                })
   
     
 
