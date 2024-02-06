@@ -148,6 +148,7 @@ class PageTiktok(BaseCase): #inherit BaseCase
         current_batch_info = self.info_videos(current_batch)
         for video_info in current_batch_info:
             if self.flip(0.5):
+                time.sleep(0.5)
                 if self.like_video(video_info['video']):
                     video_liked.append(video_info)
                     num_of_posts_clicked += 1
@@ -222,15 +223,15 @@ class PageTiktok(BaseCase): #inherit BaseCase
         self.batch_num = 0
         while num_batches > 0:  # if new batch appeared on foryou page
             print(f"\n****ENTERING BATCH{6-num_batches}\n")
-            self.update_batch()
             num_batches -= 1
             self.batch_num += 1
             liked_videos = self.like_videos_with_hashtag(self.current_batch, self.predefined_hashtag_list)
-            time.sleep(3)
-
+            time.sleep(5)
             current_batch_info = self.info_videos(self.current_batch)
+
             self.write_to_csv(current_batch_info, "like_by_hashtag_data_all_videos.csv")  # all videos on page 
             self.write_to_csv(liked_videos, "like_by_hashtag_data_liked_videos.csv") #only the ones that were liked by hashtag
+            self.update_batch()
             
         
     def iterate_through_batches_like_random(self, batches=5):
@@ -240,22 +241,23 @@ class PageTiktok(BaseCase): #inherit BaseCase
         self.batch_num = 0
         while batches > 0:
             print(f"\n****BATCH #{6-batches}\n")
-            self.update_batch()
             batches -= 1
             self.batch_num += 1
+            current_batch_info = self.info_videos(self.current_batch)
             liked_videos = self.like_videos_random(self.current_batch)
-            time.sleep(3)
+            time.sleep(5)
 
             # Uncomment this if want data from random liking
             current_batch_info = self.info_videos(self.current_batch)
             self.write_to_csv(current_batch_info, "like_by_random_data_all_videos.csv")
             self.write_to_csv(liked_videos, "like_by_random_data_liked_videos.csv")
+            self.update_batch()
 
     def write_to_csv(self, data, filename):
         """
         Write data to a CSV file
         """
-        now = datetime.now().strftime("%m-%d")
+        now = datetime.now().strftime("%H-%m-%d")
         csv_file_path = f"./data/{now}_{filename}"
 
         with open(csv_file_path, 'a', newline='', encoding='utf-8') as csv_file:
