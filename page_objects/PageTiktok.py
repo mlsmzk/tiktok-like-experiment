@@ -35,8 +35,9 @@ class PageTiktok(BaseCase): #inherit BaseCase
             author = self.get_author(video)
             likes = self.get_likes(video)
             hashtag = self.get_hashtag(video)
+            music = self.get_music(video)
             batch_number = self.batch_num
-            summary.append({'batch': batch_number, 'index': index, 'video': video, 'hashtag': hashtag, 'author': author, 'likes': likes})
+            summary.append({'batch': batch_number, 'index': index, 'music': music, 'video': video, 'hashtag': hashtag, 'author': author, 'likes': likes})
 
         return summary
 
@@ -76,6 +77,19 @@ class PageTiktok(BaseCase): #inherit BaseCase
         except NoSuchElementException:
             print("Hashtag element not found.")
             return []
+        
+    def get_music(self, video):
+        try:
+            music_info = video.find_element(By.XPATH, ".//*[@class='css-pvx3oa-DivMusicText epjbyn3']")
+            music_text = music_info.text if music_info else None
+
+            if music_text:
+                return music_text
+            else:
+                return None
+        except (NoSuchElementException, ValueError):
+            print("Unable to retrieve the number of likes")
+            return 0
 
     def fetch_tiktok(self):
         """
@@ -261,13 +275,14 @@ class PageTiktok(BaseCase): #inherit BaseCase
         csv_file_path = f"./data/{now}_{filename}"
 
         with open(csv_file_path, 'a', newline='', encoding='utf-8') as csv_file:
-            fieldnames = ['batch', 'index', 'hashtag', 'author', 'likes']
+            fieldnames = ['batch', 'index', 'music', 'hashtag', 'author', 'likes']
             writer = csv.DictWriter(csv_file, fieldnames=fieldnames)
 
             for video_info in data:
                 writer.writerow({
                     'batch': video_info['batch'],
                     'index': video_info['index'],
+                    'music': video_info['music'],
                     #'video': video_info['video'],
                     'hashtag': ', '.join(video_info['hashtag']),  # Convert list to comma-separated string
                     'author': video_info['author'],
