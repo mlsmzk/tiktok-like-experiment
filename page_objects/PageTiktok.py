@@ -57,9 +57,15 @@ class PageTiktok(BaseCase): #inherit BaseCase
             like_text = like_button.get_attribute('aria-label')
             
             # Extract numerical value using regex
-            match = re.search(r'(\d+\.\d+|\d+)K', like_text)
+            match = re.search(r'(\d+\.\d+|\d+)([KM])?', like_text)
             if match:
-                likes = float(match.group(1)) * 1000  # Convert K to actual number
+                # Check if suffix (K or M) is present
+                if match.group(2) == 'K':
+                    likes = float(match.group(1)) * 1000  # Convert K to actual number
+                elif match.group(2) == 'M':
+                    likes = float(match.group(1)) * 1000000  # Convert M to actual number
+                else:
+                    likes = float(match.group(1))
                 return int(likes)
             else:
                 return 0
