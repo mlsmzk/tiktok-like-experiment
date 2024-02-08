@@ -7,22 +7,21 @@ By: Miles Mezaki, Sandy Liu, Sarah Goldman, Caroline Jung, Johanna Lee, Audrey L
 
 ## how to run test:
 1. open vscode
-2. set python interpreter as venv (virtual environment, [directions to install](https://techinscribed.com/python-virtual-environment-in-vscode/)
-    a. open computer terminal and do the following, one line at a time
-           pip install virtualenv
-           virtualenv --version
-           cd ~
-           mkdir .virtualenvs
-           cd .virtualenvs
-           virtualenv venv
-           source venv/bin/activate
-    b. open vscode, go to view > command palette, type Python: Select Interpreter, click venv
-    <img width="711" alt="Screenshot 2024-02-08 at 12 47 43 PM" src="https://github.com/mlsmzk/tiktok-like-experiment/assets/114271268/1c0da498-62be-4304-b7b7-1ccd92945f28">
-    c. on vscode, go to terminal > New Termina. You should see (venv) (base) <img width="403" alt="Screenshot 2024-02-08 at 12 49 18 PM" src="https://github.com/mlsmzk/tiktok-like-experiment/assets/114271268/3f44556d-f415-4cf6-a711-a90d1a558618">
-
-4. run the python file PageTikTok.py by copying this to the terminal: python -m pytest . --html=report.html
-6. manually log in, ***remove two popups on bottom right after log in***
-7. when "test passed" appears on the terminal, look inside folder and there should be a report.html with details
+2. set python interpreter as venv (virtual environment, [directions to install](https://techinscribed.com/python-virtual-environment-in-vscode/) <br>
+    a. open computer terminal and do the following, one line at a time  <br>
+           pip install virtualenv  <br>
+           virtualenv --version  <br>
+           cd ~  <br>
+           mkdir .virtualenvs  <br>
+           cd .virtualenvs  <br>
+           virtualenv venv  <br>
+           source venv/bin/activate  <br>
+    b. open vscode, go to view > command palette, type Python: Select Interpreter, click venv  <br>
+    <img width="711" alt="Screenshot 2024-02-08 at 12 47 43 PM" src="https://github.com/mlsmzk/tiktok-like-experiment/assets/114271268/1c0da498-62be-4304-b7b7-1ccd92945f28">  <br>
+    c. on vscode, go to terminal > New Terminal. You should see (venv) (base) <img width="403" alt="Screenshot 2024-02-08 at 12 49 18 PM" src="https://github.com/mlsmzk/tiktok-like-experiment/assets/114271268/3f44556d-f415-4cf6-a711-a90d1a558618">  <br>
+4. run the python file PageTikTok.py by copying this to the terminal: python -m pytest . --html=report.html  <br>
+6. manually log in, ***remove two popups on bottom right after log in***  <br>
+7. when "test passed" appears on the terminal, look inside folder and there should be a report.html with details  <br>
 
 
 
