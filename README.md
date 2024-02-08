@@ -22,7 +22,7 @@ git clone this repository on your device.
     <img width="711" alt="Screenshot 2024-02-08 at 12 47 43 PM" src="https://github.com/mlsmzk/tiktok-like-experiment/assets/114271268/1c0da498-62be-4304-b7b7-1ccd92945f28">  <br>
     c. on vscode, go to terminal > New Terminal. You should see (venv) (base) <img width="403" alt="Screenshot 2024-02-08 at 12 49 18 PM" src="https://github.com/mlsmzk/tiktok-like-experiment/assets/114271268/3f44556d-f415-4cf6-a711-a90d1a558618">  <br>
 3. navigate to the tiktok-like-experiement folder on the vscode terminal (so where you cloned this repository into)
-4. run > pip install -r requirements.txt to get all the packages
+4. run: pip install -r requirements.txt to get all the packages
 5. run the python file PageTikTok.py by copying this to the terminal: python -m pytest . --html=report.html  <br>
 6. manually log in, ***remove two popups on bottom right after log in***  <br>
 7. when "test passed" appears on the terminal, look inside folder and there should be a report.html with details  <br>
