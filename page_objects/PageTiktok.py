@@ -11,7 +11,7 @@ import re
 import numpy as np
 import csv
 from datetime import datetime
-import os 
+import os.path
 
 """
 1 batch = the number of posts available on page before scrolling down and loading more.
@@ -35,11 +35,14 @@ class PageTiktok(BaseCase): #inherit BaseCase
         summary = []
         for index, video in enumerate(videoList):
             author = self.get_author(video)
-            likes = self.get_likes(video)
+            likes = self.get_stats(video,0)
+            comments = self.get_stats(video,1)
+            shares = self.get_stats(video,2)
+            saves = self.get_stats(video,3)
             hashtag = self.get_hashtag(video)
             music = self.get_music(video)
             batch_number = self.batch_num
-            summary.append({'batch': batch_number, 'index': index, 'music': music, 'video': video, 'hashtag': hashtag, 'author': author, 'likes': likes})
+            summary.append({'batch': batch_number, 'index': index, 'music': music, 'video': video, 'hashtag': hashtag, 'author': author, 'likes': likes, 'comments': comments, 'shares':shares, 'saves': saves})
 
         return summary
 
@@ -51,9 +54,9 @@ class PageTiktok(BaseCase): #inherit BaseCase
             print("Author element not found.")
             return None
 
-    def get_likes(self, video):
+    def get_stats(self, video, target):
         try:
-            like_button = video.find_elements(By.XPATH, ".//*[@class='css-1ok4pbl-ButtonActionItem e1hk3hf90']")[0]
+            like_button = video.find_elements(By.XPATH, ".//*[@class='css-1ok4pbl-ButtonActionItem e1hk3hf90']")[target]
             like_text = like_button.get_attribute('aria-label')
             
             # Extract numerical value using regex
@@ -71,8 +74,8 @@ class PageTiktok(BaseCase): #inherit BaseCase
                 return 0
 
         except (NoSuchElementException, ValueError):
-            print("Unable to retrieve the number of likes")
-            return 0
+            print(f"Unable to retrieve the number of target:{target}")
+            return -1
 
 
     def get_hashtag(self, video):
@@ -97,7 +100,7 @@ class PageTiktok(BaseCase): #inherit BaseCase
                 return None
         except (NoSuchElementException, ValueError):
             print("Unable to retrieve the number of likes")
-            return 0
+            return -1
 
     def fetch_tiktok(self):
         """
@@ -282,9 +285,13 @@ class PageTiktok(BaseCase): #inherit BaseCase
 
         csv_file_path = f"./data/{self.current_time}_{filename}.csv"
 
+        file_exists = os.path.isfile(csv_file_path) # checks if file exists already
+        
         with open(csv_file_path, 'a', newline='', encoding='utf-8') as csv_file:
-            fieldnames = ['batch', 'index', 'music', 'hashtag', 'author', 'likes']
+            fieldnames = ['batch', 'index', 'music', 'hashtag', 'author', 'likes','comments','shares','saves']
             writer = csv.DictWriter(csv_file, fieldnames=fieldnames)
+            if not file_exists:
+                writer.writeheader() #writes header only once
 
             for video_info in data:
                 writer.writerow({
@@ -294,7 +301,10 @@ class PageTiktok(BaseCase): #inherit BaseCase
                     #'video': video_info['video'],
                     'hashtag': ', '.join(video_info['hashtag']),  # Convert list to comma-separated string
                     'author': video_info['author'],
-                    'likes': video_info['likes']
+                    'likes': video_info['likes'],
+                    'comments': video_info['comments'],
+                    'shares': video_info['shares'],
+                    'saves': video_info['saves']
                 })
   
     
