@@ -45,6 +45,7 @@ class PageTiktok(BaseCase): #inherit BaseCase
             summary.append({'batch': batch_number, 'index': index, 'music': music, 'video': video, 'hashtag': hashtag, 'author': author, 'likes': likes, 'comments': comments, 'shares':shares, 'saves': saves})
 
         return summary
+        
 
     def get_author(self, video):
         try:
@@ -283,7 +284,7 @@ class PageTiktok(BaseCase): #inherit BaseCase
         Write data to a CSV file
         """
 
-        csv_file_path = f"./data/{self.current_time}_{filename}.csv"
+        csv_file_path = f"./data/{self.current_time}_{filename}"
 
         file_exists = os.path.isfile(csv_file_path) # checks if file exists already
         
