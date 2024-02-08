@@ -29,7 +29,7 @@ git clone this repository on your device.
     b. repeat a until no more errors <br>
     c. if you see the error "_main-py: error: unrecognized arguments: --html=report.html", run: "pip install pytest-html" <br>
 6. manually log in, ***remove two popups on bottom right after log in***  <br>
-7. when "test passed" appears on the terminal, look inside folder and there should be a report.html with details  <br>
+7. when "test passed" appears on the terminal, 1.open the data folder. There should be 4 csv files with the current time. 2. there should be also be an updated report.html with details  <br>
 
 
 
