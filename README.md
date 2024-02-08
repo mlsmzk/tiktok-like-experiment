@@ -11,7 +11,7 @@ git clone this repository on your device.
 1. open vscode
 2. set python interpreter as venv (virtual environment, [directions to install](https://techinscribed.com/python-virtual-environment-in-vscode/) <br>
     a. open computer terminal and do the following, one line at a time  <br>
-           pip install virtualenv  <br>
+           <br> pip install virtualenv  <br>
            virtualenv --version  <br>
            cd ~  <br>
            mkdir .virtualenvs  <br>
@@ -24,7 +24,7 @@ git clone this repository on your device.
 3. navigate to the tiktok-like-experiement folder on the vscode terminal (so where you cloned this repository into)
 4. run: pip install -r requirements.txt to get all the packages <br>
    a. if this doesn't work, move on to number 5. <br>
-5. run the python file PageTikTok.py by copying this to the terminal: python -m pytest . --html=report.html  <br>
+5. run the python file PageTikTok.py by copying this to the terminal: python -m pytest . --html=report.html <br>
     a. if this does not work ex) no module "module name", run: pip install "module name" <br>
     b. repeat a until no more errors <br>
     c. if you see the error "_main-py: error: unrecognized arguments: --html=report.html", run: "pip install pytest-html" <br>
