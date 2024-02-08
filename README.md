@@ -27,6 +27,7 @@ Currently, the code successfully identifies posts with **predefined hashtags** (
 - ElementClickInterception for some posts that are supposed to be liked (fixed)
 - randomly like posts (scenario 2)  (completed)
 - like posts with specific creator/sound (scenario 3) (Miles)
+- csv header (completed)
 - what information to store from html page 
-    - currently saving batch, index, video, tags, author, likes
+    - currently saving batch, index, video, tags, author, number of likes, ***comments, saves, shares*** (2/8 new!)
     - might consider using pyktok later if need more specific information
