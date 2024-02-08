@@ -9,7 +9,9 @@ git clone this repository on your device.
 
 ## how to run test:
 1. open vscode
-2. set python interpreter as venv (virtual environment, [directions to install](https://techinscribed.com/python-virtual-environment-in-vscode/) <br>
+2. acitvate base: (base) $
+3. set python interpreter
+as venv (virtual environment, [directions to install](https://techinscribed.com/python-virtual-environment-in-vscode/) <br>
     a. open computer terminal and do the following, one line at a time  <br>
            <br> pip install virtualenv  <br>
            virtualenv --version  <br>
@@ -21,16 +23,17 @@ git clone this repository on your device.
     b. open vscode, go to view > command palette, type Python: Select Interpreter, click venv  <br>
     <img width="711" alt="Screenshot 2024-02-08 at 12 47 43 PM" src="https://github.com/mlsmzk/tiktok-like-experiment/assets/114271268/1c0da498-62be-4304-b7b7-1ccd92945f28">  <br>
     c. on vscode, go to terminal > New Terminal. Check if you see (venv) at the start <img width="403" alt="Screenshot 2024-02-08 at 12 49 18 PM" src="https://github.com/mlsmzk/tiktok-like-experiment/assets/114271268/3f44556d-f415-4cf6-a711-a90d1a558618">  <br>
-3. navigate to the tiktok-like-experiement folder on the vscode terminal (so where you cloned this repository into)
-4. run: pip install -r requirements.txt to get all the packages <br>
+4. navigate to the tiktok-like-experiement folder on the vscode terminal (so where you cloned this repository into)
+5. run: pip install -r requirements.txt to get all the packages <br>
    a. if this doesn't work, move on to number 5. <br>
-5. run the python file PageTikTok.py by copying this to the terminal: python -m pytest . --html=report.html <br>
+6. run the python file PageTikTok.py by copying this to the terminal: python -m pytest . --html=report.html <br>
     a. run: ***sbase get chromedriver*** on terminal <br>
     b. if this does not work ex) no module "module name", run: pip install "module name" <br>
     c. repeat a until no more errors <br>
     d. if you see the error "_main-py: error: unrecognized arguments: --html=report.html", run: "pip install pytest-html" <br>
-6. manually log in, ***remove two popups on bottom right after log in***  <br>
-7. when "test passed" appears on the terminal, 1.open the data folder. There should be 4 csv files with the current time. 2. there should be also be an updated report.html with details  <br>
+*** if you did all this but still have an error no chrome
+7. manually log in, ***remove two popups on bottom right after log in***  <br>
+8. when "test passed" appears on the terminal, 1.open the data folder. There should be 4 csv files with the current time. 2. there should be also be an updated report.html with details  <br>
 
 
 
