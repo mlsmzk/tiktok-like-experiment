@@ -25,9 +25,10 @@ git clone this repository on your device.
 4. run: pip install -r requirements.txt to get all the packages <br>
    a. if this doesn't work, move on to number 5. <br>
 5. run the python file PageTikTok.py by copying this to the terminal: python -m pytest . --html=report.html <br>
-    a. if this does not work ex) no module "module name", run: pip install "module name" <br>
-    b. repeat a until no more errors <br>
-    c. if you see the error "_main-py: error: unrecognized arguments: --html=report.html", run: "pip install pytest-html" <br>
+    a. run: sbase get chromedriver on terminal <br>
+    b. if this does not work ex) no module "module name", run: pip install "module name" <br>
+    c. repeat a until no more errors <br>
+    d. if you see the error "_main-py: error: unrecognized arguments: --html=report.html", run: "pip install pytest-html" <br>
 6. manually log in, ***remove two popups on bottom right after log in***  <br>
 7. when "test passed" appears on the terminal, 1.open the data folder. There should be 4 csv files with the current time. 2. there should be also be an updated report.html with details  <br>
 
