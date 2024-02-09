@@ -41,8 +41,9 @@ class PageTiktok(BaseCase): #inherit BaseCase
             saves = self.get_stats(video,3)
             hashtag = self.get_hashtag(video)
             music = self.get_music(video)
+            id = self.get_video_id(video)
             batch_number = self.batch_num
-            summary.append({'batch': batch_number, 'index': index, 'music': music, 'video': video, 'hashtag': hashtag, 'author': author, 'likes': likes, 'comments': comments, 'shares':shares, 'saves': saves})
+            summary.append({'batch': batch_number, 'index': index, 'music': music, 'video': video, 'hashtag': hashtag, 'author': author, 'likes': likes, 'comments': comments, 'shares':shares, 'saves': saves, 'video_id': id})
 
         return summary
         
@@ -97,6 +98,20 @@ class PageTiktok(BaseCase): #inherit BaseCase
 
             if music_text:
                 return music_text
+            else:
+                return None
+        except (NoSuchElementException, ValueError):
+            print("Unable to retrieve the number of likes")
+            return -1
+        
+    def get_video_id(self, video):
+        try:
+            
+            id_info = video.find_element(By.XPATH, ".//*[@class='tiktok-web-player no-controls']")
+            video_id = id_info.get_attribute("id") if id_info else None
+
+            if video_id:
+                return video_id
             else:
                 return None
         except (NoSuchElementException, ValueError):
@@ -273,7 +288,6 @@ class PageTiktok(BaseCase): #inherit BaseCase
             liked_videos = self.like_videos_random(self.current_batch)
             time.sleep(5)
 
-            # Uncomment this if want data from random liking
             current_batch_info = self.info_videos(self.current_batch)
             self.write_to_csv(current_batch_info, "like_by_random_data_all_videos.csv")
             self.write_to_csv(liked_videos, "like_by_random_data_liked_videos.csv")
@@ -289,7 +303,7 @@ class PageTiktok(BaseCase): #inherit BaseCase
         file_exists = os.path.isfile(csv_file_path) # checks if file exists already
         
         with open(csv_file_path, 'a', newline='', encoding='utf-8') as csv_file:
-            fieldnames = ['batch', 'index', 'music', 'hashtag', 'author', 'likes','comments','shares','saves']
+            fieldnames = ['batch', 'index', 'music', 'hashtag', 'author', 'likes','comments','shares','saves', 'video_id']
             writer = csv.DictWriter(csv_file, fieldnames=fieldnames)
             if not file_exists:
                 writer.writeheader() #writes header only once
@@ -305,7 +319,8 @@ class PageTiktok(BaseCase): #inherit BaseCase
                     'likes': video_info['likes'],
                     'comments': video_info['comments'],
                     'shares': video_info['shares'],
-                    'saves': video_info['saves']
+                    'saves': video_info['saves'],
+                    'video_id': video_info['video_id']
                 })
   
     
