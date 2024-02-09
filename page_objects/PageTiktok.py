@@ -24,7 +24,7 @@ class PageTiktok(BaseCase): #inherit BaseCase
     current_batch = []
     len_all_posts = None
     all_videos_on_page = []
-    current_time = datetime.now().strftime("%H-%M-%m-%d")
+    current_time = datetime.now().strftime("%m-%d-%H-%M")
 
     
     def info_videos(self, videoList):
