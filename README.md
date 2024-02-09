@@ -5,40 +5,109 @@ By: Miles Mezaki, Sandy Liu, Sarah Goldman, Caroline Jung, Johanna Lee, Audrey L
 
 ##### The TikTok audit code is in the PageTiktok.py file in the page_objects folder. chrome_audit has not been updated.
 
-git clone this repository on your device.
+## How to Run the Code
+### 1. Clone the Repository
+You should be able to clone the repository by running
+```
+git clone https://github.com/mlsmzk/tiktok-like-experiment
+```
+or by cloning manually on GitHub Desktop.
 
-## how to run test:
-1. open vscode
-2. acitvate base: (base) $
-3. set python interpreter
-as venv (virtual environment, [directions to install](https://techinscribed.com/python-virtual-environment-in-vscode/) <br>
-    a. open computer terminal and do the following, one line at a time  <br>
-           <br> pip install virtualenv  <br>
-           virtualenv --version  <br>
-           cd ~  <br>
-           mkdir .virtualenvs  <br>
-           cd .virtualenvs  <br>
-           virtualenv venv  <br>
-           source venv/bin/activate  <br>
-    b. open vscode, go to view > command palette, type Python: Select Interpreter, click venv  <br>
-    <img width="711" alt="Screenshot 2024-02-08 at 12 47 43 PM" src="https://github.com/mlsmzk/tiktok-like-experiment/assets/114271268/1c0da498-62be-4304-b7b7-1ccd92945f28">  <br>
-    c. on vscode, go to terminal > New Terminal. Check if you see (venv) at the start <img width="403" alt="Screenshot 2024-02-08 at 12 49 18 PM" src="https://github.com/mlsmzk/tiktok-like-experiment/assets/114271268/3f44556d-f415-4cf6-a711-a90d1a558618">  <br>
-4. navigate to the tiktok-like-experiement folder on the vscode terminal (so where you cloned this repository into)
-5. run: pip install -r requirements.txt to get all the packages <br>
-   a. if this doesn't work, move on to number 5. <br>
-6. run the python file PageTikTok.py by copying this to the terminal: python -m pytest . --html=report.html <br>
-    a. run: ***sbase get chromedriver*** on terminal <br>
-    b. if this does not work ex) no module "module name", run: pip install "module name" <br>
-    c. repeat a until no more errors <br>
-    d. if you see the error "_main-py: error: unrecognized arguments: --html=report.html", run: "pip install pytest-html" <br>
-*** if you did all this but still have an error no chrome
-7. manually log in, ***remove two popups on bottom right after log in***  <br>
-8. when "test passed" appears on the terminal, 1.open the data folder. There should be 4 csv files with the current time. 2. there should be also be an updated report.html with details  <br>
+### 2. Open VS Code
+2. Activate conda's base environment (should show ```(base)``` before your directory in your terminal)
+
+    ![alt text](readme_assets/base.png)
+
+### 3. cd to Repository
+Next, change your working directory to the repository you cloned. This is different from opening the folder in VS Code, though you can change directories through the terminal in VS Code.
+
+On Windows it will look something like this:
+    ![alt text](readme_assets/changedir.png)
+
+and on Mac/Linux the directory will be different but the command `cd` will stay the same. If you're confused, we recommend starting with `cd ~` (root directory) and locating the repository from there. With any luck, you'll remember where you cloned the repository and might even be able to copy the path.
+
+### 4. Create a virtual environment
+Next you will want to create a virtual environment. This can be done through Python's own venv library, or using the [easily installable virtualenv library](https://techinscribed.com/python-virtual-environment-in-vscode/). The next steps will cover installation through Python's built-in library.
+    
+**a.** Open a terminal, either zsh on Mac or PowerShell on Windows. You may need to **run the terminal as administrator/root user** if this is your first time creating a virtual environment. 
+
+**b.** Run the command 
+    
+    python -m venv .venv
+
+This will create a directory called `.venv` (you can change the name if you like). This directory is useful because it contains its own python version and package manager. This means that when activated, the python version you use is located in .venv rather than your global python version. Furthermore, any packages installed while the venv is activated will only be accessible in the virtual environment. This is especially helpful with version conflicts, but shouldn't be an issue if you're a newer Python user or don't have other projects in Python.
+
+**c.** Activate the virtual environment. This command varies between platforms. On Windows, it is
+        
+    .venv/Scripts/activate
+
+and on Mac/Linux the command should be
+
+    source .venv/bin/activate
+
+Here is a list of ways to activate if your shell is different than the default:
+
+![Activate venv](readme_assets/activation.png)
+
+**d.** To turn off the virtual environment once you are done, it should suffice to type `deactivate` into your terminal.
+
+
+### 5. Install Required Packages
+Next you'll need Selenium and other important packages. Luckily, having the virtual environment standardizes the command! Run
+
+    pip install -r requirements.txt
+   
+### 6. Run the Code
+Now you should be able to run the code. The source code is located in `page_objects/PageTiktok.py` and the test that you will run is located in `tests/tiktok/test_tiktok.py`. Customize these to your heart's content! All raw data exports will be stored in CSVs under `data/`. To run the tests, you can run
+
+    python -m pytest . --html=report.html
+
+This will run tests we specified in `tests/` and should export data from an instance where the algorithm
+
+a. Randomly likes videos
+
+b. Likes videos if they're part of a pre-decided list of hashtags
+
+Any output from the tests, as well as any information about failures, will be located in a file generated called `report.html`, located in the home directory of the repository. This is what the `--html=report.html` flag indicates when we run pytest.
+
+### 7. When the Code Runs...
+When the code starts running, it will bring up a pop up window where Tiktok is open. It is important that you manually log in to the Tiktok page and solve the Captcha puzzle built to deter automated bots like us. But we're for the sake of education! So after you manually log in and solve the puzzle, get rid of the keyboard shortcut and tiktok for desktop/app pop-ups, and the algorithm should perform as intended!
+
+![Remove these pop-ups](readme_assets/pop-ups.png)
+
+
+### 8. Troubleshooting
+
+#### Running Scripts is Disabled on this System
+
+If you're on Windows, you may have an issue with the execution policies allowed for scripts on the machine. To bypass this, we used this command in an administrator terminal:
+
+    Set-ExecutionPolicy RemoteSigned -Scope CurrentUser
+
+If the issue persists, talk to Miles.
+
+On Mac/Linux, you may have to run `sudo source .venv/bin/activate`, though it shouldn't be a problem.
+
+#### Chrome Not Installed
+**a.** In terminal, run 
+
+    sbase get chromedriver
+
+**b.** If this does not work, like if you receive the message `no module "module"`, try running
+
+    pip install "module"
+
+#### _main-py: error: unrecognized arguments: --html=report.html
+**a.** Try running
+
+    pip install pytest-html
+
+#### See Miles, Johanna, or Sandy for other errors
 
 
 
 
-## things to notice:
+## Things to Notice:
 1. You can commment/uncomment the output csv code two iterate_through functions.
 2. If the requirements does not work, pip install packages mentioned in the import
 3. pytest contains both tendency liking/random liking test codes
