@@ -11,11 +11,11 @@ By: Miles Mezaki, Sandy Liu, Sarah Goldman, Caroline Jung, Johanna Lee, Audrey L
 ### New testing method
 1. navigate into tests/tiktok. you will notice that there are two test files now, ```test_active.py``` and ```test_control.py```
 2. Open test_active.py <br>
-    - replace ```scenario_num_1``` with your scenario number (1-6)
-    - replace the last initial (JL) in ```username_1``` with your intial, and scenario number (Sc1) with your scenario number. 
+    - replace ```scenario_num``` with your scenario number (1-6)
+    - replace the last initial (JL) in ```username``` with your intial, and scenario number (Sc1) with your scenario number. 
 3. Open test__control.py <br>
     - ***Don't replace scenario_num_1***, because -1 means we're running the control
-    - only replace the last initial (JL) with your intial, and scenario number (Sc1) in ```username_1```  
+    - only replace the last initial (JL) with your intial, and scenario number (Sc1) in ```username```  
 
 ### How to run active/control user at the same time
 1. Open ***TWO*** terminals on vscode and split it for better view <br>
