@@ -12,15 +12,4 @@ def test_like_hashtag():
     #page1.chromebrowser.delete_all_cookies()
     time.sleep(10)
 
-"""
-def test_like_random(self):
-    scenario_num = 1 #change this for different scenarios
-    page = PageTiktok(scenario_num)
-    page.fetch_tiktok()
-    page.iterate_through_batches_like_random()
-    time.sleep(10)
-    self.chromebrowser.close()
-"""
-    
-
 

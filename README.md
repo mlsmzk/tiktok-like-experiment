@@ -5,6 +5,48 @@ By: Miles Mezaki, Sandy Liu, Sarah Goldman, Caroline Jung, Johanna Lee, Audrey L
 
 ##### The TikTok audit code is in the PageTiktok.py file in the page_objects folder. chrome_audit has not been updated.
 
+
+## (2/11 New!)
+### New testing method
+1. navigate into tests/tiktok. you will notice that there are two test files now, ```test_active.py``` and ```test_control.py```
+2. Open test_active.py <br>
+    - replace ```scenario_num_1``` with your scenario number (1-6)
+    - replace the last initial (JL) in ```username_1``` with your intial, and scenario number (Sc1) with your scenario number. 
+3. Open test__control.py <br>
+    - ***Don't replace scenario_num_1***, because -1 means we're running the control
+    - only replace the last initial (JL) with your intial, and scenario number (Sc1) in ```username_1```  
+
+### How to run active/control user at the same time
+1. Open ***TWO*** terminals on vscode and split it for better view <br>
+![alt text](readme_assets/split%20terminal.png)
+2. Run this command first
+```
+# active user
+python -m pytest tests/tiktok/test_active.py --html=report_active.html
+```
+3. Login with your ***active tiktok user***. 
+4. Go back to the vscode terminal. Run this command on the other terminal.
+```
+# control user
+python -m pytest tests/tiktok/test_control.py --html=report_control.html
+```
+3. Login with your ***control tiktok user***. 
+4. Now just wait!
+
+### Explaining the csv files
+The csv files have a new naming method. 
+```
+{scenario_num}_{username}_{current_time}_{filename}
+```
+- scenario_num (1-6), -1 means control
+- username: Sec02Gr2Sc1Activ_JL format.
+- current_time: time you ran test
+- file_name = like_by_hashtag_all_videos (this is fixed for this experiment)
+
+
+
+
+
 ## How to Run the Code
 ### 1. Clone the Repository
 You should be able to clone the repository by running
