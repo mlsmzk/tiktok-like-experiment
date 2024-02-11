@@ -22,13 +22,15 @@ class PageTiktok(BaseCase): #inherit BaseCase
     chromebrowser = Driver(uc=True)
     actions = ActionChains(chromebrowser)
 
-    def __init__(self,scenario_num):
+    def __init__(self,scenario_num,username):
         self.scenario_num = scenario_num
+        self.username = username
         self.predefined_hashtag_list = self.get_hashtag_list(scenario_num)
         self.current_batch = []
         self.len_all_posts = None
         self.all_videos_on_page = []
         self.current_time = datetime.now().strftime("%m-%d-%H-%M")
+
 
 
     def get_hashtag_list(self, scenario_num):
@@ -77,6 +79,7 @@ class PageTiktok(BaseCase): #inherit BaseCase
             return None
 
     def get_stats(self, video, target):
+        #id: xgwrapper-0-7315931231986666798
         try:
             like_button = video.find_elements(By.XPATH, ".//*[@class='css-1ok4pbl-ButtonActionItem e1hk3hf90']")[target]
             like_text = like_button.get_attribute('aria-label')
@@ -309,7 +312,7 @@ class PageTiktok(BaseCase): #inherit BaseCase
             print(f"\n****ENTERING BATCH{6-num_batches}\n")
             num_batches -= 1
             self.batch_num += 1
-            liked_videos = self.like_videos_control(self.current_batch, self.control_hashtag_list)
+            liked_videos = self.like_videos_control(self.current_batch)
             time.sleep(5)
             current_batch_info = self.info_videos(self.current_batch)
 
@@ -343,7 +346,7 @@ class PageTiktok(BaseCase): #inherit BaseCase
         Write data to a CSV file
         """
 
-        csv_file_path = f"./data/{self.scenario_num}_{self.current_time}_{filename}"
+        csv_file_path = f"./data/{self.scenario_num}_{self.username}_{self.current_time}_{filename}"
 
         file_exists = os.path.isfile(csv_file_path) # checks if file exists already
         
