@@ -12,21 +12,40 @@ import numpy as np
 import csv
 from datetime import datetime
 import os.path
-import pyperclip
 
 """
 1 batch = the number of posts available on page before scrolling down and loading more.
 """
 
 class PageTiktok(BaseCase): #inherit BaseCase
-    predefined_hashtag_list = ["viral","foryou"]
     control_hashtag_list = []
     chromebrowser = Driver(uc=True)
     actions = ActionChains(chromebrowser)
-    current_batch = []
-    len_all_posts = None
-    all_videos_on_page = []
-    current_time = datetime.now().strftime("%m-%d-%H-%M")
+
+    def __init__(self,scenario_num):
+        self.scenario_num = scenario_num
+        self.predefined_hashtag_list = self.get_hashtag_list(scenario_num)
+        self.current_batch = []
+        self.len_all_posts = None
+        self.all_videos_on_page = []
+        self.current_time = datetime.now().strftime("%m-%d-%H-%M")
+
+
+    def get_hashtag_list(self, scenario_num):
+        if scenario_num == 1: 
+            return ["gaming", "fortnite", "videogames", "pcgaming", "epicgames", "gamergirl", "leaguetok", "gamingmemes"]
+        elif scenario_num == 2:
+            return ["5minutecrafts", "crafts", "handmade", "creative", "crafty", "decoration", "tutorial", "gifts", "aesthetic," "decor", "diy"]
+        elif scenario_num == 3:
+            return ["Foodlover", "foodie", "foodtiktok", "asmr", "cooking", "eating", "yummy", "delicious", "mukbang", "eat", "recipe", "tiktokfood"]
+        elif scenario_num == 4:
+            return ["makeuptutorial", "makeup", "beauty", "makeupartist", "makeuphacks", "tutorial", "eyeliner", "makeuptransformation", "grwn", "mua", "skincare", "makeuproutine", "makeupchallenge"]
+        elif scenario_num == 5:
+            return ["Workout", "fitness", "gym", "lifter", "gymtok", "fitnessmotivation", "running", "bodybuilding", "fit", "fittok", "health", "weightloss", "muscle", "training", "fitnesstips"]
+        elif scenario_num == 6:
+            return ["Dance", "dancer", "music", "dancechallenge", "dancetutorial", "dancers", "lyric", "song", "spotify", "applemusic"]
+        else: 
+            return []
 
     
     def info_videos(self, videoList):
@@ -43,7 +62,6 @@ class PageTiktok(BaseCase): #inherit BaseCase
             saves = self.get_stats(video,3)
             hashtag = self.get_hashtag(video)
             music = self.get_music(video)
-            id = self.get_video_id(video)
             batch_number = self.batch_num
             summary.append({'batch': batch_number, 'index': index, 'music': music, 'video': video, 'hashtag': hashtag, 'author': author, 'likes': likes, 'comments': comments, 'shares':shares, 'saves': saves, 'video_id': id})
 
@@ -103,23 +121,8 @@ class PageTiktok(BaseCase): #inherit BaseCase
             else:
                 return None
         except (NoSuchElementException, ValueError):
-            print("Unable to retrieve the number of likes")
+            print("Unable to retrieve the number of music")
             return -1
-        
-    def get_video_id(self, video):
-        try:
-            id_div = video.find_element(By.XPATH, ".//*[@class='css-11ma4ul-DivVideoPlayerContainer e1bh0wg714']")
-            #video_id = id_info.get_attribute("id") if id_info else None
-            if id_div:
-                self.chromebrowser.execute_script("arguments[0].dispatchEvent(new MouseEvent('dblclick', { bubbles: true, cancelable: true }));", id_div)
-                to_copy = self.chromebrowser.find_elements(By.XPATH, ".//*[@class='css-4tmqf2-LiItemWrapper e5bhsb11']")[2]
-                if to_copy:
-                    to_copy.click()
-                    copied_text = self.get_copied_text_from_clipboard()
-                    return copied_text
-        except (NoSuchElementException, ValueError, IndexError):
-            print("Unable to retrieve the number of likes")
-            return None
         
     
 
@@ -202,7 +205,7 @@ class PageTiktok(BaseCase): #inherit BaseCase
         print(f"\nThere are #{len(current_batch_info)} videos \n and #{num_of_posts_clicked} posts were randomly liked successfully")
         return video_liked
     
-    def like_videos_control(self,current_batch,predefined_hashtag_list):
+    def like_videos_control(self,current_batch):
         """
         in each video in current_batch, like it iff it contains a hashtag in the predefined hashtag list
         """
@@ -212,7 +215,7 @@ class PageTiktok(BaseCase): #inherit BaseCase
         current_batch_info = self.info_videos(current_batch)
         for video_info in current_batch_info:
             if video_info["hashtag"]:
-                if set(video_info["hashtag"]) & set(predefined_hashtag_list):
+                if set(video_info["hashtag"]) & set(self.predefined_hashtag_list):
                     num_of_posts_with_hashtag += 1
                     if self.like_video(video_info["video"]): #if video was successfully liked
                         video_liked.append(video_info)
@@ -220,7 +223,7 @@ class PageTiktok(BaseCase): #inherit BaseCase
         print(f"\nThere are #{num_of_posts_with_hashtag} videos with predefined hashtags \n and #{num_of_posts_clicked} posts were liked successfully")
         return video_liked
     
-    def like_videos_with_hashtag(self,current_batch,predefined_hashtag_list):
+    def like_videos_with_hashtag(self,current_batch):
         """
         in each video in current_batch, like it iff it contains a hashtag in the predefined hashtag list
         """
@@ -230,7 +233,7 @@ class PageTiktok(BaseCase): #inherit BaseCase
         current_batch_info = self.info_videos(current_batch)
         for video_info in current_batch_info:
             if video_info["hashtag"]:
-                if set(video_info["hashtag"]) & set(predefined_hashtag_list):
+                if set(video_info["hashtag"]) & set(self.predefined_hashtag_list):
                     num_of_posts_with_hashtag += 1
                     if self.like_video(video_info["video"]): #if video was successfully liked
                         video_liked.append(video_info)
@@ -289,7 +292,7 @@ class PageTiktok(BaseCase): #inherit BaseCase
             print(f"\n****ENTERING BATCH{6-num_batches}\n")
             num_batches -= 1
             self.batch_num += 1
-            liked_videos = self.like_videos_with_hashtag(self.current_batch, self.predefined_hashtag_list)
+            liked_videos = self.like_videos_with_hashtag(self.current_batch)
             time.sleep(5)
             current_batch_info = self.info_videos(self.current_batch)
 
@@ -340,12 +343,12 @@ class PageTiktok(BaseCase): #inherit BaseCase
         Write data to a CSV file
         """
 
-        csv_file_path = f"./data/{self.current_time}_{filename}"
+        csv_file_path = f"./data/{self.scenario_num}_{self.current_time}_{filename}"
 
         file_exists = os.path.isfile(csv_file_path) # checks if file exists already
         
         with open(csv_file_path, 'a', newline='', encoding='utf-8') as csv_file:
-            fieldnames = ['batch', 'index', 'music', 'hashtag', 'author', 'likes','comments','shares','saves', 'video_id']
+            fieldnames = ['batch', 'index', 'music', 'hashtag', 'author', 'likes','comments','shares','saves']
             writer = csv.DictWriter(csv_file, fieldnames=fieldnames)
             if not file_exists:
                 writer.writeheader() #writes header only once
@@ -362,7 +365,6 @@ class PageTiktok(BaseCase): #inherit BaseCase
                     'comments': video_info['comments'],
                     'shares': video_info['shares'],
                     'saves': video_info['saves'],
-                    'video_id': video_info['video_id']
                 })
   
     
