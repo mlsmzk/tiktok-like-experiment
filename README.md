@@ -125,3 +125,9 @@ Currently, the code successfully identifies posts with **predefined hashtags** (
 - what information to store from html page 
     - currently saving batch, index, video, tags, author, number of likes, ***comments, saves, shares*** (2/8 new!)
     - might consider using pyktok later if need more specific information
+- fix data to csv bug (?)
+- dummy accounts (everyone)
+- get video ID for csv ()
+- duplicate data (sandy)
+- identify and implement hashtag lists for different personas (miles)
+- "control" experiment that just scrolls
