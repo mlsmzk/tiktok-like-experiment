@@ -7,7 +7,7 @@ def test_like_hashtag():
     username_1 = "Sec02Gr2Sc1Activ_JL" #replace JL with your initial
     page1 = PageTiktok(scenario_num_1,username_1)
     page1.fetch_tiktok()
-    time.sleep(100)
+    time.sleep(60)
     page1.iterate_through_batches_like_by_hashtag()
     #page1.chromebrowser.delete_all_cookies()
     time.sleep(10)
