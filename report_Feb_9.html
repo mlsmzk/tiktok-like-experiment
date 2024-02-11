@@ -241,10 +241,10 @@ function filter_table(elem) {
 }
 </script>
     <h1>report_Feb_9.html</h1>
-    <p>Report generated on 09-Feb-2024 at 12:18:52 by <a href="https://pypi.python.org/pypi/pytest-html">pytest-html</a> v2.0.1</p>
+    <p>Report generated on 09-Feb-2024 at 14:29:38 by <a href="https://pypi.python.org/pypi/pytest-html">pytest-html</a> v2.0.1</p>
     <h2>Summary</h2>
-    <p>1 tests ran in 146.92 seconds. </p>
-    <p class="filter" hidden="true">(Un)check the boxes to filter the results.</p><input checked="true" class="filter" data-test-result="passed" hidden="true" name="filter_checkbox" onChange="filter_table(this)" type="checkbox"/><span class="passed">1 passed</span>, <input checked="true" class="filter" data-test-result="skipped" disabled="true" hidden="true" name="filter_checkbox" onChange="filter_table(this)" type="checkbox"/><span class="skipped">0 skipped</span>, <input checked="true" class="filter" data-test-result="failed" disabled="true" hidden="true" name="filter_checkbox" onChange="filter_table(this)" type="checkbox"/><span class="failed">0 failed</span>, <input checked="true" class="filter" data-test-result="error" disabled="true" hidden="true" name="filter_checkbox" onChange="filter_table(this)" type="checkbox"/><span class="error">0 errors</span>, <input checked="true" class="filter" data-test-result="xfailed" disabled="true" hidden="true" name="filter_checkbox" onChange="filter_table(this)" type="checkbox"/><span class="xfailed">0 expected failures</span>, <input checked="true" class="filter" data-test-result="xpassed" disabled="true" hidden="true" name="filter_checkbox" onChange="filter_table(this)" type="checkbox"/><span class="xpassed">0 unexpected passes</span>, <input checked="true" class="filter" data-test-result="rerun" disabled="true" hidden="true" name="filter_checkbox" onChange="filter_table(this)" type="checkbox"/><span class="rerun">0 rerun</span>
+    <p>2 tests ran in 93.03 seconds. </p>
+    <p class="filter" hidden="true">(Un)check the boxes to filter the results.</p><input checked="true" class="filter" data-test-result="passed" disabled="true" hidden="true" name="filter_checkbox" onChange="filter_table(this)" type="checkbox"/><span class="passed">0 passed</span>, <input checked="true" class="filter" data-test-result="skipped" disabled="true" hidden="true" name="filter_checkbox" onChange="filter_table(this)" type="checkbox"/><span class="skipped">0 skipped</span>, <input checked="true" class="filter" data-test-result="failed" hidden="true" name="filter_checkbox" onChange="filter_table(this)" type="checkbox"/><span class="failed">2 failed</span>, <input checked="true" class="filter" data-test-result="error" disabled="true" hidden="true" name="filter_checkbox" onChange="filter_table(this)" type="checkbox"/><span class="error">0 errors</span>, <input checked="true" class="filter" data-test-result="xfailed" disabled="true" hidden="true" name="filter_checkbox" onChange="filter_table(this)" type="checkbox"/><span class="xfailed">0 expected failures</span>, <input checked="true" class="filter" data-test-result="xpassed" disabled="true" hidden="true" name="filter_checkbox" onChange="filter_table(this)" type="checkbox"/><span class="xpassed">0 unexpected passes</span>, <input checked="true" class="filter" data-test-result="rerun" disabled="true" hidden="true" name="filter_checkbox" onChange="filter_table(this)" type="checkbox"/><span class="rerun">0 rerun</span>
     <h2>Results</h2>
     <table id="results-table">
       <thead id="results-table-head">
@@ -255,341 +255,29 @@ function filter_table(elem) {
           <th>Links</th></tr>
         <tr hidden="true" id="not-found-message">
           <th colspan="4">No results found. Try to check the filters</th></tr></thead>
-      <tbody class="passed results-table-row">
+      <tbody class="failed results-table-row">
         <tr>
-          <td class="col-result">Passed</td>
+          <td class="col-result">Failed</td>
+          <td class="col-name">tests/tiktok/test_tiktok.py::TiktokAudit::test_like_hashtag</td>
+          <td class="col-duration">46.17</td>
+          <td class="col-links"><a class="url" href="data:," target="_blank">URL</a> <a class="image" href="assets/tests_tiktok_test_tiktok.py__TiktokAudit__test_like_hashtag_1_0.png" target="_blank">Screenshot</a> </td></tr>
+        <tr>
+          <td class="extra" colspan="4">
+            <div class="image"><a href="assets/tests_tiktok_test_tiktok.py__TiktokAudit__test_like_hashtag_1_0.png"><img src="assets/tests_tiktok_test_tiktok.py__TiktokAudit__test_like_hashtag_1_0.png"/></a></div>
+            <div class="log">self = &lt;tiktok.test_tiktok.TiktokAudit testMethod=test_like_hashtag&gt;<br/><br/>    def test_like_hashtag(self):<br/>        self.fetch_tiktok()<br/>&gt;       self.iterate_through_batches_like_by_hashtag()<br/><br/>tests/tiktok/test_tiktok.py:7: <br/>_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ <br/>page_objects/PageTiktok.py:273: in iterate_through_batches_like_by_hashtag<br/>    liked_videos = self.like_videos_with_hashtag(self.current_batch, self.predefined_hashtag_list)<br/>page_objects/PageTiktok.py:211: in like_videos_with_hashtag<br/>    current_batch_info = self.info_videos(current_batch)<br/>page_objects/PageTiktok.py:45: in info_videos<br/>    id = self.get_video_id(video)<br/>_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ <br/><br/>self = &lt;tiktok.test_tiktok.TiktokAudit testMethod=test_like_hashtag&gt;<br/>video = &lt;seleniumbase.undetected.webelement.WebElement (session=&quot;34cfbffc290eb4cb279f184c944d47c4&quot;, element=&quot;897B6C66E460F0B295E414345D734401_element_34&quot;)&gt;<br/><br/>    def get_video_id(self, video):<br/>        try:<br/>            id_div = video.find_element(By.XPATH, &quot;.//*[@class=&#x27;css-11ma4ul-DivVideoPlayerContainer e1bh0wg714&#x27;]&quot;)<br/>            #video_id = id_info.get_attribute(&quot;id&quot;) if id_info else None<br/>            if id_div:<br/>                self.chromebrowser.execute_script(&quot;arguments[0].dispatchEvent(new MouseEvent(&#x27;dblclick&#x27;, { bubbles: true, cancelable: true }));&quot;, id_div)<br/>&gt;               to_copy = self.chromebrowser.find_elements(By.XPATH, &quot;.//*[@class=&#x27;css-4tmqf2-LiItemWrapper e5bhsb11&#x27;]&quot;)[2]<br/><span class="error">E               IndexError: list index out of range</span><br/><br/>page_objects/PageTiktok.py:114: IndexError<br/> ------------------------------Captured stdout call------------------------------ <br/>
+****ENTERING BATCH1
+
+<br/></div></td></tr></tbody>
+      <tbody class="failed results-table-row">
+        <tr>
+          <td class="col-result">Failed</td>
           <td class="col-name">tests/tiktok/test_tiktok.py::TiktokAudit::test_like_random</td>
-          <td class="col-duration">146.13</td>
+          <td class="col-duration">46.06</td>
           <td class="col-links"></td></tr>
         <tr>
           <td class="extra" colspan="4">
-            <div class="log"> ------------------------------Captured stdout call------------------------------ <br/>
+            <div class="log">self = &lt;tiktok.test_tiktok.TiktokAudit testMethod=test_like_random&gt;<br/><br/>    def test_like_random(self):<br/>        self.fetch_tiktok()<br/>&gt;       self.iterate_through_batches_like_random()<br/><br/>tests/tiktok/test_tiktok.py:12: <br/>_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ <br/>page_objects/PageTiktok.py:291: in iterate_through_batches_like_random<br/>    current_batch_info = self.info_videos(self.current_batch)<br/>page_objects/PageTiktok.py:45: in info_videos<br/>    id = self.get_video_id(video)<br/>_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ <br/><br/>self = &lt;tiktok.test_tiktok.TiktokAudit testMethod=test_like_random&gt;<br/>video = &lt;seleniumbase.undetected.webelement.WebElement (session=&quot;ceea1be2cab54aa3612e697f16f68f37&quot;, element=&quot;61735ECCCFF501658C09E4B0EDCA3341_element_119&quot;)&gt;<br/><br/>    def get_video_id(self, video):<br/>        try:<br/>            id_div = video.find_element(By.XPATH, &quot;.//*[@class=&#x27;css-11ma4ul-DivVideoPlayerContainer e1bh0wg714&#x27;]&quot;)<br/>            #video_id = id_info.get_attribute(&quot;id&quot;) if id_info else None<br/>            if id_div:<br/>                self.chromebrowser.execute_script(&quot;arguments[0].dispatchEvent(new MouseEvent(&#x27;dblclick&#x27;, { bubbles: true, cancelable: true }));&quot;, id_div)<br/>&gt;               to_copy = self.chromebrowser.find_elements(By.XPATH, &quot;.//*[@class=&#x27;css-4tmqf2-LiItemWrapper e5bhsb11&#x27;]&quot;)[2]<br/><span class="error">E               IndexError: list index out of range</span><br/><br/>page_objects/PageTiktok.py:114: IndexError<br/> ------------------------------Captured stdout call------------------------------ <br/>
 ****BATCH #1
 
-Unable to retrieve the number of likes
-Unable to retrieve the number of likes
-Unable to retrieve the number of likes
-Unable to retrieve the number of likes
-Unable to retrieve the number of likes
-Unable to retrieve the number of likes
-Unable to retrieve the number of likes
-Unable to retrieve the number of likes
-Unable to retrieve the number of likes
-Unable to retrieve the number of likes
-Unable to retrieve the number of likes
-Unable to retrieve the number of likes
-Unable to retrieve the number of likes
-Unable to retrieve the number of likes
-Unable to retrieve the number of likes
-Unable to retrieve the number of likes
-Unable to retrieve the number of likes
-Unable to retrieve the number of likes
-Unable to retrieve the number of likes
-Unable to retrieve the number of likes
-Unable to retrieve the number of likes
-Unable to retrieve the number of likes
-Clicked button Like video
-85.1K likes using JavaScript
-Clicked button Like video
-160.8K likes using JavaScript
-Clicked button Like video
-22K likes using JavaScript
-Clicked button Like video
-307.8K likes using JavaScript
-Clicked button Like video
-74.8K likes using JavaScript
-Clicked button Like video
-58.8K likes using JavaScript
-Clicked button Like video
-28.5K likes using JavaScript
-Clicked button Like video
-47.6K likes using JavaScript
-Clicked button Like video
-1158 likes using JavaScript
-
-There are #12 videos 
- and #9 posts were randomly liked successfully
-Unable to retrieve the number of likes
-Unable to retrieve the number of likes
-Unable to retrieve the number of likes
-Unable to retrieve the number of likes
-Unable to retrieve the number of likes
-Unable to retrieve the number of likes
-Unable to retrieve the number of likes
-Unable to retrieve the number of likes
-Unable to retrieve the number of likes
-Unable to retrieve the number of likes
-Unable to retrieve the number of likes
-Unable to retrieve the number of likes
-Unable to retrieve the number of likes
-Unable to retrieve the number of likes
-Unable to retrieve the number of likes
-Unable to retrieve the number of likes
-Unable to retrieve the number of likes
-Unable to retrieve the number of likes
-Unable to retrieve the number of likes
-Unable to retrieve the number of likes
-Unable to retrieve the number of likes
-Unable to retrieve the number of likes
-***old batch:[{&#x27;batch&#x27;: 1, &#x27;index&#x27;: 0, &#x27;music&#x27;: &#x27;original sound - fr0sty_rick&#x27;, &#x27;video&#x27;: &lt;seleniumbase.undetected.webelement.WebElement (session=&quot;edc6d6316a3f26265dd41f5c2acfd52b&quot;, element=&quot;788EDDC1A12DC112B0ACB7A3CCB516DA_element_64&quot;)&gt;, &#x27;hashtag&#x27;: [&#x27;fyp%E3%82%B7&#x27;, &#x27;relatable&#x27;, &#x27;trending&#x27;, &#x27;aylecia&#x27;, &#x27;blowthisup&#x27;, &#x27;viral&#x27;, &#x27;qtips&#x27;], &#x27;author&#x27;: &#x27;leci.bby&#x27;, &#x27;likes&#x27;: 279400, &#x27;comments&#x27;: 623, &#x27;shares&#x27;: 15400, &#x27;saves&#x27;: 160, &#x27;video_id&#x27;: -1}, {&#x27;batch&#x27;: 1, &#x27;index&#x27;: 1, &#x27;music&#x27;: &#x27;kai bomboclaat - 6’2 with dreads btw&#x27;, &#x27;video&#x27;: &lt;seleniumbase.undetected.webelement.WebElement (session=&quot;edc6d6316a3f26265dd41f5c2acfd52b&quot;, element=&quot;788EDDC1A12DC112B0ACB7A3CCB516DA_element_65&quot;)&gt;, &#x27;hashtag&#x27;: [&#x27;dog&#x27;], &#x27;author&#x27;: &#x27;yyyudy&#x27;, &#x27;likes&#x27;: 85100, &#x27;comments&#x27;: 457, &#x27;shares&#x27;: 8539, &#x27;saves&#x27;: 1113, &#x27;video_id&#x27;: -1}, {&#x27;batch&#x27;: 1, &#x27;index&#x27;: 2, &#x27;music&#x27;: &#x27;I Wouldnt Mind - ♱&#x27;, &#x27;video&#x27;: &lt;seleniumbase.undetected.webelement.WebElement (session=&quot;edc6d6316a3f26265dd41f5c2acfd52b&quot;, element=&quot;788EDDC1A12DC112B0ACB7A3CCB516DA_element_66&quot;)&gt;, &#x27;hashtag&#x27;: [&#x27;christiantiktok&#x27;, &#x27;christianhumor&#x27;, &#x27;christianjokes&#x27;, &#x27;christiancomedy&#x27;, &#x27;christian&#x27;, &#x27;christianitytiktok&#x27;, &#x27;godisgood&#x27;, &#x27;jesussaves&#x27;, &#x27;jesusislord&#x27;], &#x27;author&#x27;: &#x27;dangmattsmith&#x27;, &#x27;likes&#x27;: 160800, &#x27;comments&#x27;: 2885, &#x27;shares&#x27;: 20800, &#x27;saves&#x27;: 650, &#x27;video_id&#x27;: -1}, {&#x27;batch&#x27;: 1, &#x27;index&#x27;: 3, &#x27;music&#x27;: &#x27;son original - Wissers.MM2&#x27;, &#x27;video&#x27;: &lt;seleniumbase.undetected.webelement.WebElement (session=&quot;edc6d6316a3f26265dd41f5c2acfd52b&quot;, element=&quot;788EDDC1A12DC112B0ACB7A3CCB516DA_element_67&quot;)&gt;, &#x27;hashtag&#x27;: [&#x27;murdermystery2&#x27;, &#x27;roblox&#x27;, &#x27;mm2&#x27;, &#x27;mm2funny&#x27;, &#x27;viral&#x27;, &#x27;robloxmurdermystery2&#x27;, &#x27;robloxmm2&#x27;], &#x27;author&#x27;: &#x27;wissers.mm2&#x27;, &#x27;likes&#x27;: 22000, &#x27;comments&#x27;: 371, &#x27;shares&#x27;: 2029, &#x27;saves&#x27;: 73, &#x27;video_id&#x27;: -1}, {&#x27;batch&#x27;: 1, &#x27;index&#x27;: 4, &#x27;music&#x27;: &#x27;original sound - ItzKbella&#x27;, &#x27;video&#x27;: &lt;seleniumbase.undetected.webelement.WebElement (session=&quot;edc6d6316a3f26265dd41f5c2acfd52b&quot;, element=&quot;788EDDC1A12DC112B0ACB7A3CCB516DA_element_68&quot;)&gt;, &#x27;hashtag&#x27;: [&#x27;lol&#x27;, &#x27;ceftokes&#x27;, &#x27;blinkybandit&#x27;, &#x27;blinkers&#x27;, &#x27;zootyville&#x27;, &#x27;ifyouaintblinkingyousinking&#x27;, &#x27;cef47&#x27;, &#x27;penjamin&#x27;], &#x27;author&#x27;: &#x27;ceftokes47&#x27;, &#x27;likes&#x27;: 66100, &#x27;comments&#x27;: 280, &#x27;shares&#x27;: 5236, &#x27;saves&#x27;: 382, &#x27;video_id&#x27;: -1}, {&#x27;batch&#x27;: 1, &#x27;index&#x27;: 5, &#x27;music&#x27;: &#x27;original sound - spo6kzie&#x27;, &#x27;video&#x27;: &lt;seleniumbase.undetected.webelement.WebElement (session=&quot;edc6d6316a3f26265dd41f5c2acfd52b&quot;, element=&quot;788EDDC1A12DC112B0ACB7A3CCB516DA_element_69&quot;)&gt;, &#x27;hashtag&#x27;: [&#x27;fyp&#x27;, &#x27;philly&#x27;, &#x27;jujuwalk&#x27;, &#x27;highschool&#x27;], &#x27;author&#x27;: &#x27;julian.sanderss&#x27;, &#x27;likes&#x27;: 307800, &#x27;comments&#x27;: 1438, &#x27;shares&#x27;: 27000, &#x27;saves&#x27;: 2132, &#x27;video_id&#x27;: -1}, {&#x27;batch&#x27;: 1, &#x27;index&#x27;: 6, &#x27;music&#x27;: &#x27;оригинальный звук - scar1exa&#x27;, &#x27;video&#x27;: &lt;seleniumbase.undetected.webelement.WebElement (session=&quot;edc6d6316a3f26265dd41f5c2acfd52b&quot;, element=&quot;788EDDC1A12DC112B0ACB7A3CCB516DA_element_70&quot;)&gt;, &#x27;hashtag&#x27;: [&#x27;fyp%E3%82%B7&#x27;, &#x27;viral&#x27;, &#x27;foryoupage&#x27;], &#x27;author&#x27;: &#x27;youcantfindalex&#x27;, &#x27;likes&#x27;: 74800, &#x27;comments&#x27;: 645, &#x27;shares&#x27;: 6154, &#x27;saves&#x27;: 535, &#x27;video_id&#x27;: -1}, {&#x27;batch&#x27;: 1, &#x27;index&#x27;: 7, &#x27;music&#x27;: &#x27;original sound - Hazell.jc&#x27;, &#x27;video&#x27;: &lt;seleniumbase.undetected.webelement.WebElement (session=&quot;edc6d6316a3f26265dd41f5c2acfd52b&quot;, element=&quot;788EDDC1A12DC112B0ACB7A3CCB516DA_element_71&quot;)&gt;, &#x27;hashtag&#x27;: [&#x27;funny&#x27;, &#x27;relatable&#x27;, &#x27;sibling&#x27;, &#x27;brother&#x27;, &#x27;sister&#x27;, &#x27;@mosiah.h&#x27;], &#x27;author&#x27;: &#x27;hazell.jc&#x27;, &#x27;likes&#x27;: 47900, &#x27;comments&#x27;: 172, &#x27;shares&#x27;: 8575, &#x27;saves&#x27;: 198, &#x27;video_id&#x27;: -1}, {&#x27;batch&#x27;: 1, &#x27;index&#x27;: 8, &#x27;music&#x27;: &#x27;오리지널 사운드 - NewJeans&#x27;, &#x27;video&#x27;: &lt;seleniumbase.undetected.webelement.WebElement (session=&quot;edc6d6316a3f26265dd41f5c2acfd52b&quot;, element=&quot;788EDDC1A12DC112B0ACB7A3CCB516DA_element_72&quot;)&gt;, &#x27;hashtag&#x27;: [&#x27;fyp&#x27;, &#x27;diet&#x27;, &#x27;gym&#x27;, &#x27;weightloss&#x27;], &#x27;author&#x27;: &#x27;pookieateacookie&#x27;, &#x27;likes&#x27;: 58800, &#x27;comments&#x27;: 4757, &#x27;shares&#x27;: 7296, &#x27;saves&#x27;: 1931, &#x27;video_id&#x27;: -1}, {&#x27;batch&#x27;: 1, &#x27;index&#x27;: 9, &#x27;music&#x27;: &#x27;original sound - kold ⛥&#x27;, &#x27;video&#x27;: &lt;seleniumbase.undetected.webelement.WebElement (session=&quot;edc6d6316a3f26265dd41f5c2acfd52b&quot;, element=&quot;788EDDC1A12DC112B0ACB7A3CCB516DA_element_73&quot;)&gt;, &#x27;hashtag&#x27;: [&#x27;fyp&#x27;, &#x27;erich&#x27;, &#x27;franchiserisks&#x27;], &#x27;author&#x27;: &#x27;tuvbtc&#x27;, &#x27;likes&#x27;: 28500, &#x27;comments&#x27;: 996, &#x27;shares&#x27;: 1435, &#x27;saves&#x27;: 127, &#x27;video_id&#x27;: -1}, {&#x27;batch&#x27;: 1, &#x27;index&#x27;: 10, &#x27;music&#x27;: &#x27;Yummy - 💋&#x27;, &#x27;video&#x27;: &lt;seleniumbase.undetected.webelement.WebElement (session=&quot;edc6d6316a3f26265dd41f5c2acfd52b&quot;, element=&quot;788EDDC1A12DC112B0ACB7A3CCB516DA_element_74&quot;)&gt;, &#x27;hashtag&#x27;: [&#x27;@minisoofficial_&#x27;, &#x27;miniso&#x27;, &#x27;minisousa&#x27;, &#x27;minisosanrio&#x27;, &#x27;minisoblindbox&#x27;, &#x27;minisocarebears&#x27;], &#x27;author&#x27;: &#x27;obesekittens&#x27;, &#x27;likes&#x27;: 47600, &#x27;comments&#x27;: 256, &#x27;shares&#x27;: 5355, &#x27;saves&#x27;: 167, &#x27;video_id&#x27;: -1}, {&#x27;batch&#x27;: 1, &#x27;index&#x27;: 11, &#x27;music&#x27;: &#x27;original sound - 2xMonte&#x27;, &#x27;video&#x27;: &lt;seleniumbase.undetected.webelement.WebElement (session=&quot;edc6d6316a3f26265dd41f5c2acfd52b&quot;, element=&quot;788EDDC1A12DC112B0ACB7A3CCB516DA_element_75&quot;)&gt;, &#x27;hashtag&#x27;: [&#x27;2xmonte&#x27;, &#x27;fyp&#x27;, &#x27;dahood&#x27;, &#x27;roblox&#x27;, &#x27;robloxfyp&#x27;, &#x27;robloxgames&#x27;, &#x27;robanger&#x27;, &#x27;robloxhoodgame&#x27;, &#x27;robloxfunny&#x27;, &#x27;robux&#x27;, &#x27;bronx&#x27;, &#x27;dahoodfyp&#x27;], &#x27;author&#x27;: &#x27;2xpeekqz&#x27;, &#x27;likes&#x27;: 1158, &#x27;comments&#x27;: 42, &#x27;shares&#x27;: 250, &#x27;saves&#x27;: 26, &#x27;video_id&#x27;: &#x27;xgwrapper-0-7328866340264103211&#x27;}]
-
-
-***length of old batch: 12
-
-
-***length of old all videos on page:12
-
-Is there no overlap between old batch and new batch?:True
-
-***length of new all videos on page:42
-Unable to retrieve the number of likes
-Unable to retrieve the number of likes
-Unable to retrieve the number of likes
-Unable to retrieve the number of likes
-Unable to retrieve the number of likes
-Unable to retrieve the number of likes
-Unable to retrieve the number of likes
-Unable to retrieve the number of likes
-Unable to retrieve the number of likes
-Unable to retrieve the number of likes
-Unable to retrieve the number of likes
-Unable to retrieve the number of likes
-Unable to retrieve the number of likes
-Unable to retrieve the number of likes
-Unable to retrieve the number of likes
-Unable to retrieve the number of likes
-Unable to retrieve the number of likes
-Unable to retrieve the number of likes
-Unable to retrieve the number of likes
-Unable to retrieve the number of likes
-Unable to retrieve the number of likes
-Unable to retrieve the number of likes
-Unable to retrieve the number of likes
-Unable to retrieve the number of likes
-Unable to retrieve the number of likes
-Unable to retrieve the number of likes
-Unable to retrieve the number of likes
-Unable to retrieve the number of likes
-Unable to retrieve the number of likes
-Unable to retrieve the number of likes
-
-***new batch: [{&#x27;batch&#x27;: 1, &#x27;index&#x27;: 0, &#x27;music&#x27;: &#x27;som original - CaioRonaldo7&#x27;, &#x27;video&#x27;: &lt;seleniumbase.undetected.webelement.WebElement (session=&quot;edc6d6316a3f26265dd41f5c2acfd52b&quot;, element=&quot;788EDDC1A12DC112B0ACB7A3CCB516DA_element_232&quot;)&gt;, &#x27;hashtag&#x27;: [&#x27;cristianoronaldo&#x27;, &#x27;cr7&#x27;, &#x27;fyp&#x27;, &#x27;viral&#x27;, &#x27;football&#x27;], &#x27;author&#x27;: &#x27;caioronaldo7_&#x27;, &#x27;likes&#x27;: 80900, &#x27;comments&#x27;: 232, &#x27;shares&#x27;: 10100, &#x27;saves&#x27;: 1045, &#x27;video_id&#x27;: -1}, {&#x27;batch&#x27;: 1, &#x27;index&#x27;: 1, &#x27;music&#x27;: &#x27;orijinal ses - OLURUNA BIRAK&#x27;, &#x27;video&#x27;: &lt;seleniumbase.undetected.webelement.WebElement (session=&quot;edc6d6316a3f26265dd41f5c2acfd52b&quot;, element=&quot;788EDDC1A12DC112B0ACB7A3CCB516DA_element_239&quot;)&gt;, &#x27;hashtag&#x27;: [&#x27;ibrahimkaraca&#x27;, &#x27;esmafarukda%C4%9F&#x27;, &#x27;ke%C5%9Ffet&#x27;, &#x27;kuran&#x27;, &#x27;erkek&#x27;], &#x27;author&#x27;: &#x27;esma._faruk_dag76&#x27;, &#x27;likes&#x27;: 27700, &#x27;comments&#x27;: 236, &#x27;shares&#x27;: 3131, &#x27;saves&#x27;: 4481, &#x27;video_id&#x27;: -1}, {&#x27;batch&#x27;: 1, &#x27;index&#x27;: 2, &#x27;music&#x27;: &#x27;Home - Edith Whiskers&#x27;, &#x27;video&#x27;: &lt;seleniumbase.undetected.webelement.WebElement (session=&quot;edc6d6316a3f26265dd41f5c2acfd52b&quot;, element=&quot;788EDDC1A12DC112B0ACB7A3CCB516DA_element_235&quot;)&gt;, &#x27;hashtag&#x27;: [&#x27;fyp&#x27;, &#x27;setthetable&#x27;, &#x27;candle&#x27;, &#x27;candles&#x27;, &#x27;candlesoftiktok&#x27;, &#x27;bow&#x27;, &#x27;bowtrend&#x27;, &#x27;candlesandbows&#x27;, &#x27;dinnertable&#x27;, &#x27;dinnertabledecor&#x27;, &#x27;holidaydinner&#x27;, &#x27;holidaydinnerideas&#x27;, &#x27;christmasdecor&#x27;], &#x27;author&#x27;: &#x27;alessandrabrontsema&#x27;, &#x27;likes&#x27;: 10300, &#x27;comments&#x27;: 51, &#x27;shares&#x27;: 3697, &#x27;saves&#x27;: 595, &#x27;video_id&#x27;: -1}, {&#x27;batch&#x27;: 1, &#x27;index&#x27;: 3, &#x27;music&#x27;: &#x27;sonido original - Alejandro Prado&#x27;, &#x27;video&#x27;: &lt;seleniumbase.undetected.webelement.WebElement (session=&quot;edc6d6316a3f26265dd41f5c2acfd52b&quot;, element=&quot;788EDDC1A12DC112B0ACB7A3CCB516DA_element_253&quot;)&gt;, &#x27;hashtag&#x27;: [&#x27;crecimientopersonal&#x27;, &#x27;mindset&#x27;, &#x27;alejandroprado&#x27;], &#x27;author&#x27;: &#x27;alejandropradou&#x27;, &#x27;likes&#x27;: 4961, &#x27;comments&#x27;: 137, &#x27;shares&#x27;: 800, &#x27;saves&#x27;: 861, &#x27;video_id&#x27;: -1}, {&#x27;batch&#x27;: 1, &#x27;index&#x27;: 4, &#x27;music&#x27;: &#x27;original sound - Shay Silver&#x27;, &#x27;video&#x27;: &lt;seleniumbase.undetected.webelement.WebElement (session=&quot;edc6d6316a3f26265dd41f5c2acfd52b&quot;, element=&quot;788EDDC1A12DC112B0ACB7A3CCB516DA_element_228&quot;)&gt;, &#x27;hashtag&#x27;: [&#x27;happy&#x27;, &#x27;hanukkah&#x27;, &#x27;america&#x27;, &#x27;festivaloflights&#x27;, &#x27;joyfulhanukkah&#x27;, &#x27;chanukahcelebration&#x27;, &#x27;happyhanukkah&#x27;, &#x27;lightandlaughter&#x27;, &#x27;hanukkahmiracles&#x27;, &#x27;warmwishes&#x27;, &#x27;candlelightcelebration&#x27;, &#x27;festivemoments&#x27;, &#x27;hanukkahhappiness&#x27;, &#x27;familytraditions&#x27;, &#x27;chagsameach&#x27;, &#x27;glowinglights&#x27;, &#x27;holidaycheer&#x27;, &#x27;latkesandlights&#x27;, &#x27;festivaljoy&#x27;, &#x27;seasonofmiracles&#x27;, &#x27;dreideldelight&#x27;, &#x27;candlesglowingbright&#x27;, &#x27;chanukahmagic&#x27;, &#x27;shinebrightly&#x27;, &#x27;happychanukah&#x27;, &#x27;lightingtheway&#x27;, &#x27;eightnightsofjoy&#x27;, &#x27;warmestwishes&#x27;, &#x27;hanukkahspirit&#x27;, &#x27;celebrationtime&#x27;, &#x27;spreadinglight&#x27;, &#x27;familytogetherness&#x27;, &#x27;happinessabounds&#x27;, &#x27;chanukahjoy&#x27;, &#x27;festivalglow&#x27;, &#x27;gleefulhanukkah&#x27;, &#x27;brightenthenight&#x27;, &#x27;festivegreetings&#x27;, &#x27;hanukkahsparkle&#x27;, &#x27;wishingyoulight&#x27;, &#x27;traditionalive&#x27;, &#x27;flickeringflames&#x27;, &#x27;happyholidayseason&#x27;, &#x27;kindlethecandles&#x27;, &#x27;seasonofhappiness&#x27;, &#x27;hanukkahwonders&#x27;, &#x27;glowingtraditions&#x27;, &#x27;brightenyourdays&#x27;, &#x27;peacefulhanukkah&#x27;, &#x27;lightheartedcelebration&#x27;, &#x27;festivedaysahead&#x27;], &#x27;author&#x27;: &#x27;shaysilver&#x27;, &#x27;likes&#x27;: 1240, &#x27;comments&#x27;: 134, &#x27;shares&#x27;: 45, &#x27;saves&#x27;: 104, &#x27;video_id&#x27;: -1}, {&#x27;batch&#x27;: 1, &#x27;index&#x27;: 5, &#x27;music&#x27;: &#x27;original sound - MDT Network&#x27;, &#x27;video&#x27;: &lt;seleniumbase.undetected.webelement.WebElement (session=&quot;edc6d6316a3f26265dd41f5c2acfd52b&quot;, element=&quot;788EDDC1A12DC112B0ACB7A3CCB516DA_element_225&quot;)&gt;, &#x27;hashtag&#x27;: [&#x27;trump&#x27;, &#x27;breakingnews&#x27;, &#x27;today&#x27;, &#x27;meidastouch&#x27;, &#x27;speaker&#x27;, &#x27;msnbc&#x27;, &#x27;cnn&#x27;, &#x27;foxnews&#x27;, &#x27;speaker&#x27;, &#x27;news&#x27;, &#x27;mccarthy&#x27;], &#x27;author&#x27;: &#x27;mattieunderwood1987&#x27;, &#x27;likes&#x27;: 24300, &#x27;comments&#x27;: 6042, &#x27;shares&#x27;: 3129, &#x27;saves&#x27;: 2233, &#x27;video_id&#x27;: -1}, {&#x27;batch&#x27;: 1, &#x27;index&#x27;: 6, &#x27;music&#x27;: &#x27;original sound - Caitlin Emiko&#x27;, &#x27;video&#x27;: &lt;seleniumbase.undetected.webelement.WebElement (session=&quot;edc6d6316a3f26265dd41f5c2acfd52b&quot;, element=&quot;788EDDC1A12DC112B0ACB7A3CCB516DA_element_240&quot;)&gt;, &#x27;hashtag&#x27;: [&#x27;iwastodayyearsold&#x27;, &#x27;airpodhack&#x27;, &#x27;airpods&#x27;], &#x27;author&#x27;: &#x27;caitlin.emiko&#x27;, &#x27;likes&#x27;: 742100, &#x27;comments&#x27;: 2954, &#x27;shares&#x27;: 140300, &#x27;saves&#x27;: 38300, &#x27;video_id&#x27;: -1}, {&#x27;batch&#x27;: 1, &#x27;index&#x27;: 7, &#x27;music&#x27;: &#x27;original sound - Ryan Long&#x27;, &#x27;video&#x27;: &lt;seleniumbase.undetected.webelement.WebElement (session=&quot;edc6d6316a3f26265dd41f5c2acfd52b&quot;, element=&quot;788EDDC1A12DC112B0ACB7A3CCB516DA_element_227&quot;)&gt;, &#x27;hashtag&#x27;: [], &#x27;author&#x27;: &#x27;ryanlongcomedy&#x27;, &#x27;likes&#x27;: 12400, &#x27;comments&#x27;: 2023, &#x27;shares&#x27;: 1144, &#x27;saves&#x27;: 888, &#x27;video_id&#x27;: -1}, {&#x27;batch&#x27;: 1, &#x27;index&#x27;: 8, &#x27;music&#x27;: &#x27;sonido original - Nicolás Maduro&#x27;, &#x27;video&#x27;: &lt;seleniumbase.undetected.webelement.WebElement (session=&quot;edc6d6316a3f26265dd41f5c2acfd52b&quot;, element=&quot;788EDDC1A12DC112B0ACB7A3CCB516DA_element_248&quot;)&gt;, &#x27;hashtag&#x27;: [&#x27;8dic&#x27;], &#x27;author&#x27;: &#x27;nicolasmadurom&#x27;, &#x27;likes&#x27;: 51600, &#x27;comments&#x27;: 952, &#x27;shares&#x27;: 4477, &#x27;saves&#x27;: 886, &#x27;video_id&#x27;: -1}, {&#x27;batch&#x27;: 1, &#x27;index&#x27;: 9, &#x27;music&#x27;: &#x27;sonido original - Nickvan&#x27;, &#x27;video&#x27;: &lt;seleniumbase.undetected.webelement.WebElement (session=&quot;edc6d6316a3f26265dd41f5c2acfd52b&quot;, element=&quot;788EDDC1A12DC112B0ACB7A3CCB516DA_element_231&quot;)&gt;, &#x27;hashtag&#x27;: [&#x27;padredefamilia&#x27;, &#x27;familyguy&#x27;, &#x27;padredefamiliatv&#x27;, &#x27;padredefamilialatino&#x27;, &#x27;petergriffin&#x27;, &#x27;latinovscastellano&#x27;, &#x27;doblaje&#x27;, &#x27;doblajemexicano&#x27;, &#x27;doblajeespa%C3%B1ol&#x27;, &#x27;capituloscompletos&#x27;], &#x27;author&#x27;: &#x27;nickvan029&#x27;, &#x27;likes&#x27;: 240900, &#x27;comments&#x27;: 2602, &#x27;shares&#x27;: 29400, &#x27;saves&#x27;: 2502, &#x27;video_id&#x27;: -1}, {&#x27;batch&#x27;: 1, &#x27;index&#x27;: 10, &#x27;music&#x27;: &#x27;sonido original - Los Parrilleros&#x27;, &#x27;video&#x27;: &lt;seleniumbase.undetected.webelement.WebElement (session=&quot;edc6d6316a3f26265dd41f5c2acfd52b&quot;, element=&quot;788EDDC1A12DC112B0ACB7A3CCB516DA_element_243&quot;)&gt;, &#x27;hashtag&#x27;: [&#x27;hombres&#x27;, &#x27;mujeres&#x27;, &#x27;podcast&#x27;, &#x27;viral&#x27;], &#x27;author&#x27;: &#x27;losparrilleros&#x27;, &#x27;likes&#x27;: 92000, &#x27;comments&#x27;: 4037, &#x27;shares&#x27;: 12400, &#x27;saves&#x27;: 72800, &#x27;video_id&#x27;: -1}, {&#x27;batch&#x27;: 1, &#x27;index&#x27;: 11, &#x27;music&#x27;: &#x27;sonido original - Verito Mach&#x27;, &#x27;video&#x27;: &lt;seleniumbase.undetected.webelement.WebElement (session=&quot;edc6d6316a3f26265dd41f5c2acfd52b&quot;, element=&quot;788EDDC1A12DC112B0ACB7A3CCB516DA_element_247&quot;)&gt;, &#x27;hashtag&#x27;: [&#x27;albertofernandez&#x27;, &#x27;despedida&#x27;, &#x27;bronca&#x27;, &#x27;indignacion&#x27;, &#x27;fantino&#x27;, &#x27;neura&#x27;, &#x27;nuncamas&#x27;, &#x27;casarosada&#x27;, &#x27;diosylapatrialodemande&#x27;], &#x27;author&#x27;: &#x27;pompis_2020&#x27;, &#x27;likes&#x27;: 14600, &#x27;comments&#x27;: 640, &#x27;shares&#x27;: 1127, &#x27;saves&#x27;: 370, &#x27;video_id&#x27;: -1}, {&#x27;batch&#x27;: 1, &#x27;index&#x27;: 12, &#x27;music&#x27;: &#x27;Bécane - A COLORS SHOW - Yamê&#x27;, &#x27;video&#x27;: &lt;seleniumbase.undetected.webelement.WebElement (session=&quot;edc6d6316a3f26265dd41f5c2acfd52b&quot;, element=&quot;788EDDC1A12DC112B0ACB7A3CCB516DA_element_229&quot;)&gt;, &#x27;hashtag&#x27;: [&#x27;duet&#x27;, &#x27;colors&#x27;, &#x27;yame&#x27;, &#x27;becane&#x27;, &#x27;french&#x27;, &#x27;frenchrapper&#x27;, &#x27;frenchrapperwiththegap&#x27;, &#x27;amg&#x27;, &#x27;amgdesign&#x27;, &#x27;amgwoodshop&#x27;, &#x27;funny&#x27;, &#x27;translate&#x27;, &#x27;wrong&#x27;, &#x27;mistranslated&#x27;, &#x27;watch&#x27;, &#x27;look&#x27;, &#x27;laugh&#x27;, &#x27;customdesign&#x27;], &#x27;author&#x27;: &#x27;the1whocannotbenamed&#x27;, &#x27;likes&#x27;: 7609, &#x27;comments&#x27;: 0, &#x27;shares&#x27;: 758, &#x27;saves&#x27;: 71, &#x27;video_id&#x27;: -1}, {&#x27;batch&#x27;: 1, &#x27;index&#x27;: 13, &#x27;music&#x27;: &#x27;suara asli - LossGass&#x27;, &#x27;video&#x27;: &lt;seleniumbase.undetected.webelement.WebElement (session=&quot;edc6d6316a3f26265dd41f5c2acfd52b&quot;, element=&quot;788EDDC1A12DC112B0ACB7A3CCB516DA_element_251&quot;)&gt;, &#x27;hashtag&#x27;: [], &#x27;author&#x27;: &#x27;anggoroaang816&#x27;, &#x27;likes&#x27;: 97500, &#x27;comments&#x27;: 8446, &#x27;shares&#x27;: 5689, &#x27;saves&#x27;: 3341, &#x27;video_id&#x27;: -1}, {&#x27;batch&#x27;: 1, &#x27;index&#x27;: 14, &#x27;music&#x27;: &#x27;sonido original - Dan&#x27;, &#x27;video&#x27;: &lt;seleniumbase.undetected.webelement.WebElement (session=&quot;edc6d6316a3f26265dd41f5c2acfd52b&quot;, element=&quot;788EDDC1A12DC112B0ACB7A3CCB516DA_element_230&quot;)&gt;, &#x27;hashtag&#x27;: [&#x27;fashiondrive&#x27;, &#x27;pegatealatiggo&#x27;, &#x27;concurso&#x27;, &#x27;23&#x27;, &#x27;eugenioderbez&#x27;], &#x27;author&#x27;: &#x27;vuelveavivir&#x27;, &#x27;likes&#x27;: 2681, &#x27;comments&#x27;: 49, &#x27;shares&#x27;: 121, &#x27;saves&#x27;: 44, &#x27;video_id&#x27;: -1}, {&#x27;batch&#x27;: 1, &#x27;index&#x27;: 15, &#x27;music&#x27;: &#x27;original sound - Mosheh Oinounou&#x27;, &#x27;video&#x27;: &lt;seleniumbase.undetected.webelement.WebElement (session=&quot;edc6d6316a3f26265dd41f5c2acfd52b&quot;, element=&quot;788EDDC1A12DC112B0ACB7A3CCB516DA_element_242&quot;)&gt;, &#x27;hashtag&#x27;: [], &#x27;author&#x27;: &#x27;mosheh&#x27;, &#x27;likes&#x27;: 28700, &#x27;comments&#x27;: 1751, &#x27;shares&#x27;: 1158, &#x27;saves&#x27;: 906, &#x27;video_id&#x27;: -1}, {&#x27;batch&#x27;: 1, &#x27;index&#x27;: 16, &#x27;music&#x27;: &#x27;suara asli - 𝘿𝙞𝙩𝙝𝙤𝙤𝙘𝙩𝙤 - Ditho octo&#x27;, &#x27;video&#x27;: &lt;seleniumbase.undetected.webelement.WebElement (session=&quot;edc6d6316a3f26265dd41f5c2acfd52b&quot;, element=&quot;788EDDC1A12DC112B0ACB7A3CCB516DA_element_254&quot;)&gt;, &#x27;hashtag&#x27;: [&#x27;&#x27;, &#x27;padang&#x27;, &#x27;sumbar&#x27;, &#x27;padangpanjang&#x27;, &#x27;limapuluhkota&#x27;, &#x27;agam&#x27;, &#x27;dharmasraya&#x27;, &#x27;solok&#x27;, &#x27;sawahlunto&#x27;, &#x27;payakumbuh&#x27;, &#x27;padangpariaman&#x27;, &#x27;bukittinggi&#x27;, &#x27;pasaman&#x27;, &#x27;pasamanbarat&#x27;, &#x27;solokselatan&#x27;, &#x27;tanahdatar&#x27;, &#x27;sijunjung&#x27;, &#x27;pasisirselatan&#x27;, &#x27;kepulauanmentawai&#x27;, &#x27;kotasolok&#x27;, &#x27;pariaman&#x27;, &#x27;sumbarrancak&#x27;, &#x27;pesonasumbar&#x27;], &#x27;author&#x27;: &#x27;dithooctob&#x27;, &#x27;likes&#x27;: 132800, &#x27;comments&#x27;: 7111, &#x27;shares&#x27;: 11700, &#x27;saves&#x27;: 4419, &#x27;video_id&#x27;: -1}, {&#x27;batch&#x27;: 1, &#x27;index&#x27;: 17, &#x27;music&#x27;: &#x27;오리지널 사운드 - 일류&#x27;, &#x27;video&#x27;: &lt;seleniumbase.undetected.webelement.WebElement (session=&quot;edc6d6316a3f26265dd41f5c2acfd52b&quot;, element=&quot;788EDDC1A12DC112B0ACB7A3CCB516DA_element_244&quot;)&gt;, &#x27;hashtag&#x27;: [], &#x27;author&#x27;: &#x27;arenaya2023&#x27;, &#x27;likes&#x27;: 2026, &#x27;comments&#x27;: 397, &#x27;shares&#x27;: 92, &#x27;saves&#x27;: 86, &#x27;video_id&#x27;: -1}, {&#x27;batch&#x27;: 1, &#x27;index&#x27;: 18, &#x27;music&#x27;: &#x27;original sound - 𝘊𝘖𝘔𝘉𝘈𝘛&#x27;, &#x27;video&#x27;: &lt;seleniumbase.undetected.webelement.WebElement (session=&quot;edc6d6316a3f26265dd41f5c2acfd52b&quot;, element=&quot;788EDDC1A12DC112B0ACB7A3CCB516DA_element_246&quot;)&gt;, &#x27;hashtag&#x27;: [&#x27;modoguerra&#x27;, &#x27;warmode&#x27;, &#x27;temach&#x27;, &#x27;themploz&#x27;], &#x27;author&#x27;: &#x27;themploz&#x27;, &#x27;likes&#x27;: 74700, &#x27;comments&#x27;: 348, &#x27;shares&#x27;: 13100, &#x27;saves&#x27;: 1088, &#x27;video_id&#x27;: -1}, {&#x27;batch&#x27;: 1, &#x27;index&#x27;: 19, &#x27;music&#x27;: &#x27;Habibi (Albanian Remix) - Ricky Rich &amp; Dardan&#x27;, &#x27;video&#x27;: &lt;seleniumbase.undetected.webelement.WebElement (session=&quot;edc6d6316a3f26265dd41f5c2acfd52b&quot;, element=&quot;788EDDC1A12DC112B0ACB7A3CCB516DA_element_226&quot;)&gt;, &#x27;hashtag&#x27;: [&#x27;millionaire&#x27;, &#x27;rich&#x27;, &#x27;bestie&#x27;], &#x27;author&#x27;: &#x27;lionlindaa&#x27;, &#x27;likes&#x27;: 28200, &#x27;comments&#x27;: 307, &#x27;shares&#x27;: 2597, &#x27;saves&#x27;: 596, &#x27;video_id&#x27;: -1}, {&#x27;batch&#x27;: 1, &#x27;index&#x27;: 20, &#x27;music&#x27;: &#x27;suara asli - DERI PRISTAYADI&#x27;, &#x27;video&#x27;: &lt;seleniumbase.undetected.webelement.WebElement (session=&quot;edc6d6316a3f26265dd41f5c2acfd52b&quot;, element=&quot;788EDDC1A12DC112B0ACB7A3CCB516DA_element_245&quot;)&gt;, &#x27;hashtag&#x27;: [&#x27;kepribadian&#x27;, &#x27;komunikasi&#x27;, &#x27;skillkomunikasi&#x27;, &#x27;narcisisticpersonalitydisorder&#x27;, &#x27;mempengaruhioranglain&#x27;], &#x27;author&#x27;: &#x27;deri.pristayadi&#x27;, &#x27;likes&#x27;: 50600, &#x27;comments&#x27;: 665, &#x27;shares&#x27;: 12400, &#x27;saves&#x27;: 1009, &#x27;video_id&#x27;: -1}, {&#x27;batch&#x27;: 1, &#x27;index&#x27;: 21, &#x27;music&#x27;: &#x27;sonido original - David Arellano&#x27;, &#x27;video&#x27;: &lt;seleniumbase.undetected.webelement.WebElement (session=&quot;edc6d6316a3f26265dd41f5c2acfd52b&quot;, element=&quot;788EDDC1A12DC112B0ACB7A3CCB516DA_element_252&quot;)&gt;, &#x27;hashtag&#x27;: [&#x27;derechocivil&#x27;, &#x27;herencia&#x27;, &#x27;juicio&#x27;, &#x27;derechosucesorio&#x27;, &#x27;juiciosucesoriotestamentario&#x27;, &#x27;juiciosucesoriointestamentario&#x27;, &#x27;albacea&#x27;, &#x27;albaceatestamentario&#x27;, &#x27;albaceatestamento&#x27;], &#x27;author&#x27;: &#x27;davidarellanoortega&#x27;, &#x27;likes&#x27;: 5239, &#x27;comments&#x27;: 211, &#x27;shares&#x27;: 627, &#x27;saves&#x27;: 610, &#x27;video_id&#x27;: -1}, {&#x27;batch&#x27;: 1, &#x27;index&#x27;: 22, &#x27;music&#x27;: &#x27;original sound - Unbox Diaries&#x27;, &#x27;video&#x27;: &lt;seleniumbase.undetected.webelement.WebElement (session=&quot;edc6d6316a3f26265dd41f5c2acfd52b&quot;, element=&quot;788EDDC1A12DC112B0ACB7A3CCB516DA_element_236&quot;)&gt;, &#x27;hashtag&#x27;: [], &#x27;author&#x27;: &#x27;unboxdiaries&#x27;, &#x27;likes&#x27;: 37400, &#x27;comments&#x27;: 545, &#x27;shares&#x27;: 3828, &#x27;saves&#x27;: 758, &#x27;video_id&#x27;: -1}, {&#x27;batch&#x27;: 1, &#x27;index&#x27;: 23, &#x27;music&#x27;: &#x27;original sound - Disabled Magic Pass - Katie&#x27;, &#x27;video&#x27;: &lt;seleniumbase.undetected.webelement.WebElement (session=&quot;edc6d6316a3f26265dd41f5c2acfd52b&quot;, element=&quot;788EDDC1A12DC112B0ACB7A3CCB516DA_element_237&quot;)&gt;, &#x27;hashtag&#x27;: [&#x27;stitch&#x27;, &#x27;disneyland&#x27;, &#x27;disneyadult&#x27;, &#x27;disneyparks&#x27;, &#x27;disabled&#x27;, &#x27;spoonie&#x27;, &#x27;disneydaspass&#x27;, &#x27;wheelchairuser&#x27;, &#x27;intersectionality&#x27;], &#x27;author&#x27;: &#x27;disabledmagicpass&#x27;, &#x27;likes&#x27;: 2329, &#x27;comments&#x27;: 236, &#x27;shares&#x27;: 180, &#x27;saves&#x27;: 14, &#x27;video_id&#x27;: -1}, {&#x27;batch&#x27;: 1, &#x27;index&#x27;: 24, &#x27;music&#x27;: &#x27;Sad piano ballad (moist / BGM)(936730) - TrickSTAR MUSIC&#x27;, &#x27;video&#x27;: &lt;seleniumbase.undetected.webelement.WebElement (session=&quot;edc6d6316a3f26265dd41f5c2acfd52b&quot;, element=&quot;788EDDC1A12DC112B0ACB7A3CCB516DA_element_241&quot;)&gt;, &#x27;hashtag&#x27;: [], &#x27;author&#x27;: &#x27;mariyahholdings&#x27;, &#x27;likes&#x27;: 7505, &#x27;comments&#x27;: 0, &#x27;shares&#x27;: 726, &#x27;saves&#x27;: 224, &#x27;video_id&#x27;: -1}, {&#x27;batch&#x27;: 1, &#x27;index&#x27;: 25, &#x27;music&#x27;: &#x27;suara asli - Ryosaya&#x27;, &#x27;video&#x27;: &lt;seleniumbase.undetected.webelement.WebElement (session=&quot;edc6d6316a3f26265dd41f5c2acfd52b&quot;, element=&quot;788EDDC1A12DC112B0ACB7A3CCB516DA_element_234&quot;)&gt;, &#x27;hashtag&#x27;: [&#x27;kikisaputri&#x27;, &#x27;kaesang&#x27;, &#x27;fyp&#x27;, &#x27;fyp%E3%82%B7&#x27;], &#x27;author&#x27;: &#x27;ryojaya&#x27;, &#x27;likes&#x27;: 743400, &#x27;comments&#x27;: 2289, &#x27;shares&#x27;: 38200, &#x27;saves&#x27;: 5595, &#x27;video_id&#x27;: -1}, {&#x27;batch&#x27;: 1, &#x27;index&#x27;: 26, &#x27;music&#x27;: &#x27;original sound - Joey Nguyen&#x27;, &#x27;video&#x27;: &lt;seleniumbase.undetected.webelement.WebElement (session=&quot;edc6d6316a3f26265dd41f5c2acfd52b&quot;, element=&quot;788EDDC1A12DC112B0ACB7A3CCB516DA_element_233&quot;)&gt;, &#x27;hashtag&#x27;: [&#x27;military&#x27;, &#x27;marines&#x27;, &#x27;army&#x27;, &#x27;navy&#x27;, &#x27;airforce&#x27;, &#x27;militarylife&#x27;, &#x27;veteran&#x27;, &#x27;money&#x27;, &#x27;miltarytiktok&#x27;, &#x27;miltok&#x27;], &#x27;author&#x27;: &#x27;joeyngooyen&#x27;, &#x27;likes&#x27;: 86800, &#x27;comments&#x27;: 2452, &#x27;shares&#x27;: 3690, &#x27;saves&#x27;: 794, &#x27;video_id&#x27;: -1}, {&#x27;batch&#x27;: 1, &#x27;index&#x27;: 27, &#x27;music&#x27;: &#x27;original sound - Rene&#x27;, &#x27;video&#x27;: &lt;seleniumbase.undetected.webelement.WebElement (session=&quot;edc6d6316a3f26265dd41f5c2acfd52b&quot;, element=&quot;788EDDC1A12DC112B0ACB7A3CCB516DA_element_249&quot;)&gt;, &#x27;hashtag&#x27;: [&#x27;funnyvideos&#x27;, &#x27;funny&#x27;, &#x27;languages&#x27;, &#x27;polyglot&#x27;, &#x27;polyglotfromhome&#x27;, &#x27;polyglotchallenge&#x27;, &#x27;languages&#x27;, &#x27;gibberish&#x27;, &#x27;gibberishchallenge&#x27;, &#x27;languagelearning&#x27;, &#x27;languagelearningtips&#x27;, &#x27;languagelearningadvice&#x27;, &#x27;languagelearningcommunity&#x27;, &#x27;learninglanguagesontiktok&#x27;, &#x27;languagelearningchallenge&#x27;, &#x27;imitation&#x27;, &#x27;worldlanguages&#x27;, &#x27;impressions&#x27;, &#x27;arabic&#x27;, &#x27;arabictiktok&#x27;, &#x27;arabiclanguage&#x27;, &#x27;arabiclanguagelearning&#x27;, &#x27;learnarabiconline&#x27;, &#x27;swedish&#x27;, &#x27;learningswedishlanguange&#x27;, &#x27;learningswedish%F0%9F%87%B8%F0%9F%87%AA&#x27;, &#x27;swedenmemes%F0%9F%87%B8%F0%9F%87%AA&#x27;, &#x27;svenskatiktok&#x27;, &#x27;svenskaspr%C3%A5ket&#x27;, &#x27;german&#x27;, &#x27;germanlanguage%F0%9F%87%A9%F0%9F%87%AA&#x27;, &#x27;germanlanguagelearning&#x27;, &#x27;learngermanwithtiktok&#x27;, &#x27;deutschlernen%F0%9F%87%A9%F0%9F%87%AA&#x27;, &#x27;deutschesprache&#x27;, &#x27;easygermannews&#x27;, &#x27;easygerman_&#x27;, &#x27;germanymemes&#x27;, &#x27;viral&#x27;, &#x27;viralvideo&#x27;, &#x27;viraltiktok&#x27;, &#x27;fyp%E3%82%B7&#x27;, &#x27;foreigner&#x27;, &#x27;pov&#x27;, &#x27;memestiktok%F0%9F%98%82%F0%9F%98%82&#x27;], &#x27;author&#x27;: &#x27;rene.barcena&#x27;, &#x27;likes&#x27;: 1700000, &#x27;comments&#x27;: 4791, &#x27;shares&#x27;: 76900, &#x27;saves&#x27;: 2478, &#x27;video_id&#x27;: -1}, {&#x27;batch&#x27;: 1, &#x27;index&#x27;: 28, &#x27;music&#x27;: &#x27;Epic News - DM Production&#x27;, &#x27;video&#x27;: &lt;seleniumbase.undetected.webelement.WebElement (session=&quot;edc6d6316a3f26265dd41f5c2acfd52b&quot;, element=&quot;788EDDC1A12DC112B0ACB7A3CCB516DA_element_250&quot;)&gt;, &#x27;hashtag&#x27;: [&#x27;greenscreen&#x27;, &#x27;futbol&#x27;, &#x27;uruguay&#x27;, &#x27;bolivia&#x27;, &#x27;argentina&#x27;, &#x27;copaamerica&#x27;, &#x27;ecuador&#x27;], &#x27;author&#x27;: &#x27;guillefutbol_4&#x27;, &#x27;likes&#x27;: 92900, &#x27;comments&#x27;: 1501, &#x27;shares&#x27;: 3639, &#x27;saves&#x27;: 173, &#x27;video_id&#x27;: -1}, {&#x27;batch&#x27;: 1, &#x27;index&#x27;: 29, &#x27;music&#x27;: &#x27;sonido original - ˗ˏˋ ꒰ ♡ ꒱ ˎˊ˗&#x27;, &#x27;video&#x27;: &lt;seleniumbase.undetected.webelement.WebElement (session=&quot;edc6d6316a3f26265dd41f5c2acfd52b&quot;, element=&quot;788EDDC1A12DC112B0ACB7A3CCB516DA_element_238&quot;)&gt;, &#x27;hashtag&#x27;: [&#x27;fyp&#x27;, &#x27;humor&#x27;, &#x27;pumchulita&#x27;], &#x27;author&#x27;: &#x27;junnkx&#x27;, &#x27;likes&#x27;: 1600000, &#x27;comments&#x27;: 6751, &#x27;shares&#x27;: 115000, &#x27;saves&#x27;: 55700, &#x27;video_id&#x27;: -1}]
-
-***length of new batch: 30
-
-
-****BATCH #2
-
-Unable to retrieve the number of likes
-Unable to retrieve the number of likes
-Unable to retrieve the number of likes
-Unable to retrieve the number of likes
-Unable to retrieve the number of likes
-Unable to retrieve the number of likes
-Unable to retrieve the number of likes
-Unable to retrieve the number of likes
-Unable to retrieve the number of likes
-Unable to retrieve the number of likes
-Unable to retrieve the number of likes
-Unable to retrieve the number of likes
-Unable to retrieve the number of likes
-Unable to retrieve the number of likes
-Unable to retrieve the number of likes
-Unable to retrieve the number of likes
-Unable to retrieve the number of likes
-Unable to retrieve the number of likes
-Unable to retrieve the number of likes
-Unable to retrieve the number of likes
-Unable to retrieve the number of likes
-Unable to retrieve the number of likes
-Unable to retrieve the number of likes
-Unable to retrieve the number of likes
-Unable to retrieve the number of likes
-Unable to retrieve the number of likes
-Unable to retrieve the number of likes
-Unable to retrieve the number of likes
-Unable to retrieve the number of likes
-Unable to retrieve the number of likes
-Unable to retrieve the number of likes
-Unable to retrieve the number of likes
-Unable to retrieve the number of likes
-Unable to retrieve the number of likes
-Unable to retrieve the number of likes
-Unable to retrieve the number of likes
-Unable to retrieve the number of likes
-Unable to retrieve the number of likes
-Unable to retrieve the number of likes
-Unable to retrieve the number of likes
-Unable to retrieve the number of likes
-Unable to retrieve the number of likes
-Unable to retrieve the number of likes
-Unable to retrieve the number of likes
-Unable to retrieve the number of likes
-Unable to retrieve the number of likes
-Unable to retrieve the number of likes
-Unable to retrieve the number of likes
-Unable to retrieve the number of likes
-Unable to retrieve the number of likes
-Unable to retrieve the number of likes
-Unable to retrieve the number of likes
-Unable to retrieve the number of likes
-Unable to retrieve the number of likes
-Unable to retrieve the number of likes
-Unable to retrieve the number of likes
-Unable to retrieve the number of likes
-Unable to retrieve the number of likes
-Unable to retrieve the number of likes
-Unable to retrieve the number of likes
-Clicked button Like video
-1241 likes using JavaScript
-Clicked button Like video
-24.3K likes using JavaScript
-Clicked button Like video
-742.1K likes using JavaScript
-Clicked button Like video
-14.6K likes using JavaScript
-Clicked button Like video
-28.7K likes using JavaScript
-Clicked button Like video
-28.2K likes using JavaScript
-Clicked button Like video
-37.4K likes using JavaScript
-Clicked button Like video
-92.9K likes using JavaScript
-
-There are #30 videos 
- and #8 posts were randomly liked successfully
-Unable to retrieve the number of likes
-Unable to retrieve the number of likes
-Unable to retrieve the number of likes
-Unable to retrieve the number of likes
-Unable to retrieve the number of likes
-Unable to retrieve the number of likes
-Unable to retrieve the number of likes
-Unable to retrieve the number of likes
-Unable to retrieve the number of likes
-Unable to retrieve the number of likes
-Unable to retrieve the number of likes
-Unable to retrieve the number of likes
-Unable to retrieve the number of likes
-Unable to retrieve the number of likes
-Unable to retrieve the number of likes
-Unable to retrieve the number of likes
-Unable to retrieve the number of likes
-Unable to retrieve the number of likes
-Unable to retrieve the number of likes
-Unable to retrieve the number of likes
-Unable to retrieve the number of likes
-Unable to retrieve the number of likes
-Unable to retrieve the number of likes
-Unable to retrieve the number of likes
-Unable to retrieve the number of likes
-Unable to retrieve the number of likes
-Unable to retrieve the number of likes
-Unable to retrieve the number of likes
-Unable to retrieve the number of likes
-Unable to retrieve the number of likes
-Unable to retrieve the number of likes
-Unable to retrieve the number of likes
-Unable to retrieve the number of likes
-Unable to retrieve the number of likes
-Unable to retrieve the number of likes
-Unable to retrieve the number of likes
-Unable to retrieve the number of likes
-Unable to retrieve the number of likes
-Unable to retrieve the number of likes
-Unable to retrieve the number of likes
-Unable to retrieve the number of likes
-Unable to retrieve the number of likes
-Unable to retrieve the number of likes
-Unable to retrieve the number of likes
-Unable to retrieve the number of likes
-Unable to retrieve the number of likes
-Unable to retrieve the number of likes
-Unable to retrieve the number of likes
-Unable to retrieve the number of likes
-Unable to retrieve the number of likes
-Unable to retrieve the number of likes
-Unable to retrieve the number of likes
-Unable to retrieve the number of likes
-Unable to retrieve the number of likes
-Unable to retrieve the number of likes
-Unable to retrieve the number of likes
-Unable to retrieve the number of likes
-Unable to retrieve the number of likes
-Unable to retrieve the number of likes
-***old batch:[{&#x27;batch&#x27;: 2, &#x27;index&#x27;: 0, &#x27;music&#x27;: &#x27;som original - CaioRonaldo7&#x27;, &#x27;video&#x27;: &lt;seleniumbase.undetected.webelement.WebElement (session=&quot;edc6d6316a3f26265dd41f5c2acfd52b&quot;, element=&quot;788EDDC1A12DC112B0ACB7A3CCB516DA_element_232&quot;)&gt;, &#x27;hashtag&#x27;: [&#x27;cristianoronaldo&#x27;, &#x27;cr7&#x27;, &#x27;fyp&#x27;, &#x27;viral&#x27;, &#x27;football&#x27;], &#x27;author&#x27;: &#x27;caioronaldo7_&#x27;, &#x27;likes&#x27;: 80900, &#x27;comments&#x27;: 232, &#x27;shares&#x27;: 10100, &#x27;saves&#x27;: 1045, &#x27;video_id&#x27;: -1}, {&#x27;batch&#x27;: 2, &#x27;index&#x27;: 1, &#x27;music&#x27;: &#x27;orijinal ses - OLURUNA BIRAK&#x27;, &#x27;video&#x27;: &lt;seleniumbase.undetected.webelement.WebElement (session=&quot;edc6d6316a3f26265dd41f5c2acfd52b&quot;, element=&quot;788EDDC1A12DC112B0ACB7A3CCB516DA_element_239&quot;)&gt;, &#x27;hashtag&#x27;: [&#x27;ibrahimkaraca&#x27;, &#x27;esmafarukda%C4%9F&#x27;, &#x27;ke%C5%9Ffet&#x27;, &#x27;kuran&#x27;, &#x27;erkek&#x27;], &#x27;author&#x27;: &#x27;esma._faruk_dag76&#x27;, &#x27;likes&#x27;: 27700, &#x27;comments&#x27;: 236, &#x27;shares&#x27;: 3131, &#x27;saves&#x27;: 4481, &#x27;video_id&#x27;: -1}, {&#x27;batch&#x27;: 2, &#x27;index&#x27;: 2, &#x27;music&#x27;: &#x27;Home - Edith Whiskers&#x27;, &#x27;video&#x27;: &lt;seleniumbase.undetected.webelement.WebElement (session=&quot;edc6d6316a3f26265dd41f5c2acfd52b&quot;, element=&quot;788EDDC1A12DC112B0ACB7A3CCB516DA_element_235&quot;)&gt;, &#x27;hashtag&#x27;: [&#x27;fyp&#x27;, &#x27;setthetable&#x27;, &#x27;candle&#x27;, &#x27;candles&#x27;, &#x27;candlesoftiktok&#x27;, &#x27;bow&#x27;, &#x27;bowtrend&#x27;, &#x27;candlesandbows&#x27;, &#x27;dinnertable&#x27;, &#x27;dinnertabledecor&#x27;, &#x27;holidaydinner&#x27;, &#x27;holidaydinnerideas&#x27;, &#x27;christmasdecor&#x27;], &#x27;author&#x27;: &#x27;alessandrabrontsema&#x27;, &#x27;likes&#x27;: 10300, &#x27;comments&#x27;: 51, &#x27;shares&#x27;: 3697, &#x27;saves&#x27;: 595, &#x27;video_id&#x27;: -1}, {&#x27;batch&#x27;: 2, &#x27;index&#x27;: 3, &#x27;music&#x27;: &#x27;sonido original - Alejandro Prado&#x27;, &#x27;video&#x27;: &lt;seleniumbase.undetected.webelement.WebElement (session=&quot;edc6d6316a3f26265dd41f5c2acfd52b&quot;, element=&quot;788EDDC1A12DC112B0ACB7A3CCB516DA_element_253&quot;)&gt;, &#x27;hashtag&#x27;: [&#x27;crecimientopersonal&#x27;, &#x27;mindset&#x27;, &#x27;alejandroprado&#x27;], &#x27;author&#x27;: &#x27;alejandropradou&#x27;, &#x27;likes&#x27;: 4961, &#x27;comments&#x27;: 137, &#x27;shares&#x27;: 800, &#x27;saves&#x27;: 861, &#x27;video_id&#x27;: -1}, {&#x27;batch&#x27;: 2, &#x27;index&#x27;: 4, &#x27;music&#x27;: &#x27;original sound - Shay Silver&#x27;, &#x27;video&#x27;: &lt;seleniumbase.undetected.webelement.WebElement (session=&quot;edc6d6316a3f26265dd41f5c2acfd52b&quot;, element=&quot;788EDDC1A12DC112B0ACB7A3CCB516DA_element_228&quot;)&gt;, &#x27;hashtag&#x27;: [&#x27;happy&#x27;, &#x27;hanukkah&#x27;, &#x27;america&#x27;, &#x27;festivaloflights&#x27;, &#x27;joyfulhanukkah&#x27;, &#x27;chanukahcelebration&#x27;, &#x27;happyhanukkah&#x27;, &#x27;lightandlaughter&#x27;, &#x27;hanukkahmiracles&#x27;, &#x27;warmwishes&#x27;, &#x27;candlelightcelebration&#x27;, &#x27;festivemoments&#x27;, &#x27;hanukkahhappiness&#x27;, &#x27;familytraditions&#x27;, &#x27;chagsameach&#x27;, &#x27;glowinglights&#x27;, &#x27;holidaycheer&#x27;, &#x27;latkesandlights&#x27;, &#x27;festivaljoy&#x27;, &#x27;seasonofmiracles&#x27;, &#x27;dreideldelight&#x27;, &#x27;candlesglowingbright&#x27;, &#x27;chanukahmagic&#x27;, &#x27;shinebrightly&#x27;, &#x27;happychanukah&#x27;, &#x27;lightingtheway&#x27;, &#x27;eightnightsofjoy&#x27;, &#x27;warmestwishes&#x27;, &#x27;hanukkahspirit&#x27;, &#x27;celebrationtime&#x27;, &#x27;spreadinglight&#x27;, &#x27;familytogetherness&#x27;, &#x27;happinessabounds&#x27;, &#x27;chanukahjoy&#x27;, &#x27;festivalglow&#x27;, &#x27;gleefulhanukkah&#x27;, &#x27;brightenthenight&#x27;, &#x27;festivegreetings&#x27;, &#x27;hanukkahsparkle&#x27;, &#x27;wishingyoulight&#x27;, &#x27;traditionalive&#x27;, &#x27;flickeringflames&#x27;, &#x27;happyholidayseason&#x27;, &#x27;kindlethecandles&#x27;, &#x27;seasonofhappiness&#x27;, &#x27;hanukkahwonders&#x27;, &#x27;glowingtraditions&#x27;, &#x27;brightenyourdays&#x27;, &#x27;peacefulhanukkah&#x27;, &#x27;lightheartedcelebration&#x27;, &#x27;festivedaysahead&#x27;], &#x27;author&#x27;: &#x27;shaysilver&#x27;, &#x27;likes&#x27;: 1241, &#x27;comments&#x27;: 134, &#x27;shares&#x27;: 45, &#x27;saves&#x27;: 104, &#x27;video_id&#x27;: -1}, {&#x27;batch&#x27;: 2, &#x27;index&#x27;: 5, &#x27;music&#x27;: &#x27;original sound - MDT Network&#x27;, &#x27;video&#x27;: &lt;seleniumbase.undetected.webelement.WebElement (session=&quot;edc6d6316a3f26265dd41f5c2acfd52b&quot;, element=&quot;788EDDC1A12DC112B0ACB7A3CCB516DA_element_225&quot;)&gt;, &#x27;hashtag&#x27;: [&#x27;trump&#x27;, &#x27;breakingnews&#x27;, &#x27;today&#x27;, &#x27;meidastouch&#x27;, &#x27;speaker&#x27;, &#x27;msnbc&#x27;, &#x27;cnn&#x27;, &#x27;foxnews&#x27;, &#x27;speaker&#x27;, &#x27;news&#x27;, &#x27;mccarthy&#x27;], &#x27;author&#x27;: &#x27;mattieunderwood1987&#x27;, &#x27;likes&#x27;: 24300, &#x27;comments&#x27;: 6042, &#x27;shares&#x27;: 3129, &#x27;saves&#x27;: 2233, &#x27;video_id&#x27;: -1}, {&#x27;batch&#x27;: 2, &#x27;index&#x27;: 6, &#x27;music&#x27;: &#x27;original sound - Caitlin Emiko&#x27;, &#x27;video&#x27;: &lt;seleniumbase.undetected.webelement.WebElement (session=&quot;edc6d6316a3f26265dd41f5c2acfd52b&quot;, element=&quot;788EDDC1A12DC112B0ACB7A3CCB516DA_element_240&quot;)&gt;, &#x27;hashtag&#x27;: [&#x27;iwastodayyearsold&#x27;, &#x27;airpodhack&#x27;, &#x27;airpods&#x27;], &#x27;author&#x27;: &#x27;caitlin.emiko&#x27;, &#x27;likes&#x27;: 742100, &#x27;comments&#x27;: 2954, &#x27;shares&#x27;: 140300, &#x27;saves&#x27;: 38300, &#x27;video_id&#x27;: -1}, {&#x27;batch&#x27;: 2, &#x27;index&#x27;: 7, &#x27;music&#x27;: &#x27;original sound - Ryan Long&#x27;, &#x27;video&#x27;: &lt;seleniumbase.undetected.webelement.WebElement (session=&quot;edc6d6316a3f26265dd41f5c2acfd52b&quot;, element=&quot;788EDDC1A12DC112B0ACB7A3CCB516DA_element_227&quot;)&gt;, &#x27;hashtag&#x27;: [], &#x27;author&#x27;: &#x27;ryanlongcomedy&#x27;, &#x27;likes&#x27;: 12400, &#x27;comments&#x27;: 2023, &#x27;shares&#x27;: 1144, &#x27;saves&#x27;: 888, &#x27;video_id&#x27;: -1}, {&#x27;batch&#x27;: 2, &#x27;index&#x27;: 8, &#x27;music&#x27;: &#x27;sonido original - Nicolás Maduro&#x27;, &#x27;video&#x27;: &lt;seleniumbase.undetected.webelement.WebElement (session=&quot;edc6d6316a3f26265dd41f5c2acfd52b&quot;, element=&quot;788EDDC1A12DC112B0ACB7A3CCB516DA_element_248&quot;)&gt;, &#x27;hashtag&#x27;: [&#x27;8dic&#x27;], &#x27;author&#x27;: &#x27;nicolasmadurom&#x27;, &#x27;likes&#x27;: 51600, &#x27;comments&#x27;: 952, &#x27;shares&#x27;: 4477, &#x27;saves&#x27;: 886, &#x27;video_id&#x27;: -1}, {&#x27;batch&#x27;: 2, &#x27;index&#x27;: 9, &#x27;music&#x27;: &#x27;sonido original - Nickvan&#x27;, &#x27;video&#x27;: &lt;seleniumbase.undetected.webelement.WebElement (session=&quot;edc6d6316a3f26265dd41f5c2acfd52b&quot;, element=&quot;788EDDC1A12DC112B0ACB7A3CCB516DA_element_231&quot;)&gt;, &#x27;hashtag&#x27;: [&#x27;padredefamilia&#x27;, &#x27;familyguy&#x27;, &#x27;padredefamiliatv&#x27;, &#x27;padredefamilialatino&#x27;, &#x27;petergriffin&#x27;, &#x27;latinovscastellano&#x27;, &#x27;doblaje&#x27;, &#x27;doblajemexicano&#x27;, &#x27;doblajeespa%C3%B1ol&#x27;, &#x27;capituloscompletos&#x27;], &#x27;author&#x27;: &#x27;nickvan029&#x27;, &#x27;likes&#x27;: 240900, &#x27;comments&#x27;: 2602, &#x27;shares&#x27;: 29400, &#x27;saves&#x27;: 2502, &#x27;video_id&#x27;: -1}, {&#x27;batch&#x27;: 2, &#x27;index&#x27;: 10, &#x27;music&#x27;: &#x27;sonido original - Los Parrilleros&#x27;, &#x27;video&#x27;: &lt;seleniumbase.undetected.webelement.WebElement (session=&quot;edc6d6316a3f26265dd41f5c2acfd52b&quot;, element=&quot;788EDDC1A12DC112B0ACB7A3CCB516DA_element_243&quot;)&gt;, &#x27;hashtag&#x27;: [&#x27;hombres&#x27;, &#x27;mujeres&#x27;, &#x27;podcast&#x27;, &#x27;viral&#x27;], &#x27;author&#x27;: &#x27;losparrilleros&#x27;, &#x27;likes&#x27;: 92000, &#x27;comments&#x27;: 4037, &#x27;shares&#x27;: 12400, &#x27;saves&#x27;: 72800, &#x27;video_id&#x27;: -1}, {&#x27;batch&#x27;: 2, &#x27;index&#x27;: 11, &#x27;music&#x27;: &#x27;sonido original - Verito Mach&#x27;, &#x27;video&#x27;: &lt;seleniumbase.undetected.webelement.WebElement (session=&quot;edc6d6316a3f26265dd41f5c2acfd52b&quot;, element=&quot;788EDDC1A12DC112B0ACB7A3CCB516DA_element_247&quot;)&gt;, &#x27;hashtag&#x27;: [&#x27;albertofernandez&#x27;, &#x27;despedida&#x27;, &#x27;bronca&#x27;, &#x27;indignacion&#x27;, &#x27;fantino&#x27;, &#x27;neura&#x27;, &#x27;nuncamas&#x27;, &#x27;casarosada&#x27;, &#x27;diosylapatrialodemande&#x27;], &#x27;author&#x27;: &#x27;pompis_2020&#x27;, &#x27;likes&#x27;: 14600, &#x27;comments&#x27;: 640, &#x27;shares&#x27;: 1127, &#x27;saves&#x27;: 370, &#x27;video_id&#x27;: -1}, {&#x27;batch&#x27;: 2, &#x27;index&#x27;: 12, &#x27;music&#x27;: &#x27;Bécane - A COLORS SHOW - Yamê&#x27;, &#x27;video&#x27;: &lt;seleniumbase.undetected.webelement.WebElement (session=&quot;edc6d6316a3f26265dd41f5c2acfd52b&quot;, element=&quot;788EDDC1A12DC112B0ACB7A3CCB516DA_element_229&quot;)&gt;, &#x27;hashtag&#x27;: [&#x27;duet&#x27;, &#x27;colors&#x27;, &#x27;yame&#x27;, &#x27;becane&#x27;, &#x27;french&#x27;, &#x27;frenchrapper&#x27;, &#x27;frenchrapperwiththegap&#x27;, &#x27;amg&#x27;, &#x27;amgdesign&#x27;, &#x27;amgwoodshop&#x27;, &#x27;funny&#x27;, &#x27;translate&#x27;, &#x27;wrong&#x27;, &#x27;mistranslated&#x27;, &#x27;watch&#x27;, &#x27;look&#x27;, &#x27;laugh&#x27;, &#x27;customdesign&#x27;], &#x27;author&#x27;: &#x27;the1whocannotbenamed&#x27;, &#x27;likes&#x27;: 7609, &#x27;comments&#x27;: 0, &#x27;shares&#x27;: 758, &#x27;saves&#x27;: 71, &#x27;video_id&#x27;: -1}, {&#x27;batch&#x27;: 2, &#x27;index&#x27;: 13, &#x27;music&#x27;: &#x27;suara asli - LossGass&#x27;, &#x27;video&#x27;: &lt;seleniumbase.undetected.webelement.WebElement (session=&quot;edc6d6316a3f26265dd41f5c2acfd52b&quot;, element=&quot;788EDDC1A12DC112B0ACB7A3CCB516DA_element_251&quot;)&gt;, &#x27;hashtag&#x27;: [], &#x27;author&#x27;: &#x27;anggoroaang816&#x27;, &#x27;likes&#x27;: 97500, &#x27;comments&#x27;: 8446, &#x27;shares&#x27;: 5689, &#x27;saves&#x27;: 3341, &#x27;video_id&#x27;: -1}, {&#x27;batch&#x27;: 2, &#x27;index&#x27;: 14, &#x27;music&#x27;: &#x27;sonido original - Dan&#x27;, &#x27;video&#x27;: &lt;seleniumbase.undetected.webelement.WebElement (session=&quot;edc6d6316a3f26265dd41f5c2acfd52b&quot;, element=&quot;788EDDC1A12DC112B0ACB7A3CCB516DA_element_230&quot;)&gt;, &#x27;hashtag&#x27;: [&#x27;fashiondrive&#x27;, &#x27;pegatealatiggo&#x27;, &#x27;concurso&#x27;, &#x27;23&#x27;, &#x27;eugenioderbez&#x27;], &#x27;author&#x27;: &#x27;vuelveavivir&#x27;, &#x27;likes&#x27;: 2681, &#x27;comments&#x27;: 49, &#x27;shares&#x27;: 121, &#x27;saves&#x27;: 44, &#x27;video_id&#x27;: -1}, {&#x27;batch&#x27;: 2, &#x27;index&#x27;: 15, &#x27;music&#x27;: &#x27;original sound - Mosheh Oinounou&#x27;, &#x27;video&#x27;: &lt;seleniumbase.undetected.webelement.WebElement (session=&quot;edc6d6316a3f26265dd41f5c2acfd52b&quot;, element=&quot;788EDDC1A12DC112B0ACB7A3CCB516DA_element_242&quot;)&gt;, &#x27;hashtag&#x27;: [], &#x27;author&#x27;: &#x27;mosheh&#x27;, &#x27;likes&#x27;: 28700, &#x27;comments&#x27;: 1751, &#x27;shares&#x27;: 1158, &#x27;saves&#x27;: 906, &#x27;video_id&#x27;: -1}, {&#x27;batch&#x27;: 2, &#x27;index&#x27;: 16, &#x27;music&#x27;: &#x27;suara asli - 𝘿𝙞𝙩𝙝𝙤𝙤𝙘𝙩𝙤 - Ditho octo&#x27;, &#x27;video&#x27;: &lt;seleniumbase.undetected.webelement.WebElement (session=&quot;edc6d6316a3f26265dd41f5c2acfd52b&quot;, element=&quot;788EDDC1A12DC112B0ACB7A3CCB516DA_element_254&quot;)&gt;, &#x27;hashtag&#x27;: [&#x27;&#x27;, &#x27;padang&#x27;, &#x27;sumbar&#x27;, &#x27;padangpanjang&#x27;, &#x27;limapuluhkota&#x27;, &#x27;agam&#x27;, &#x27;dharmasraya&#x27;, &#x27;solok&#x27;, &#x27;sawahlunto&#x27;, &#x27;payakumbuh&#x27;, &#x27;padangpariaman&#x27;, &#x27;bukittinggi&#x27;, &#x27;pasaman&#x27;, &#x27;pasamanbarat&#x27;, &#x27;solokselatan&#x27;, &#x27;tanahdatar&#x27;, &#x27;sijunjung&#x27;, &#x27;pasisirselatan&#x27;, &#x27;kepulauanmentawai&#x27;, &#x27;kotasolok&#x27;, &#x27;pariaman&#x27;, &#x27;sumbarrancak&#x27;, &#x27;pesonasumbar&#x27;], &#x27;author&#x27;: &#x27;dithooctob&#x27;, &#x27;likes&#x27;: 132800, &#x27;comments&#x27;: 7111, &#x27;shares&#x27;: 11700, &#x27;saves&#x27;: 4419, &#x27;video_id&#x27;: &#x27;xgwrapper-0-7310538188286610694&#x27;}, {&#x27;batch&#x27;: 2, &#x27;index&#x27;: 17, &#x27;music&#x27;: &#x27;오리지널 사운드 - 일류&#x27;, &#x27;video&#x27;: &lt;seleniumbase.undetected.webelement.WebElement (session=&quot;edc6d6316a3f26265dd41f5c2acfd52b&quot;, element=&quot;788EDDC1A12DC112B0ACB7A3CCB516DA_element_244&quot;)&gt;, &#x27;hashtag&#x27;: [], &#x27;author&#x27;: &#x27;arenaya2023&#x27;, &#x27;likes&#x27;: 2026, &#x27;comments&#x27;: 397, &#x27;shares&#x27;: 92, &#x27;saves&#x27;: 86, &#x27;video_id&#x27;: -1}, {&#x27;batch&#x27;: 2, &#x27;index&#x27;: 18, &#x27;music&#x27;: &#x27;original sound - 𝘊𝘖𝘔𝘉𝘈𝘛&#x27;, &#x27;video&#x27;: &lt;seleniumbase.undetected.webelement.WebElement (session=&quot;edc6d6316a3f26265dd41f5c2acfd52b&quot;, element=&quot;788EDDC1A12DC112B0ACB7A3CCB516DA_element_246&quot;)&gt;, &#x27;hashtag&#x27;: [&#x27;modoguerra&#x27;, &#x27;warmode&#x27;, &#x27;temach&#x27;, &#x27;themploz&#x27;], &#x27;author&#x27;: &#x27;themploz&#x27;, &#x27;likes&#x27;: 74700, &#x27;comments&#x27;: 348, &#x27;shares&#x27;: 13100, &#x27;saves&#x27;: 1088, &#x27;video_id&#x27;: -1}, {&#x27;batch&#x27;: 2, &#x27;index&#x27;: 19, &#x27;music&#x27;: &#x27;Habibi (Albanian Remix) - Ricky Rich &amp; Dardan&#x27;, &#x27;video&#x27;: &lt;seleniumbase.undetected.webelement.WebElement (session=&quot;edc6d6316a3f26265dd41f5c2acfd52b&quot;, element=&quot;788EDDC1A12DC112B0ACB7A3CCB516DA_element_226&quot;)&gt;, &#x27;hashtag&#x27;: [&#x27;millionaire&#x27;, &#x27;rich&#x27;, &#x27;bestie&#x27;], &#x27;author&#x27;: &#x27;lionlindaa&#x27;, &#x27;likes&#x27;: 28200, &#x27;comments&#x27;: 307, &#x27;shares&#x27;: 2597, &#x27;saves&#x27;: 596, &#x27;video_id&#x27;: -1}, {&#x27;batch&#x27;: 2, &#x27;index&#x27;: 20, &#x27;music&#x27;: &#x27;suara asli - DERI PRISTAYADI&#x27;, &#x27;video&#x27;: &lt;seleniumbase.undetected.webelement.WebElement (session=&quot;edc6d6316a3f26265dd41f5c2acfd52b&quot;, element=&quot;788EDDC1A12DC112B0ACB7A3CCB516DA_element_245&quot;)&gt;, &#x27;hashtag&#x27;: [&#x27;kepribadian&#x27;, &#x27;komunikasi&#x27;, &#x27;skillkomunikasi&#x27;, &#x27;narcisisticpersonalitydisorder&#x27;, &#x27;mempengaruhioranglain&#x27;], &#x27;author&#x27;: &#x27;deri.pristayadi&#x27;, &#x27;likes&#x27;: 50600, &#x27;comments&#x27;: 665, &#x27;shares&#x27;: 12400, &#x27;saves&#x27;: 1009, &#x27;video_id&#x27;: -1}, {&#x27;batch&#x27;: 2, &#x27;index&#x27;: 21, &#x27;music&#x27;: &#x27;sonido original - David Arellano&#x27;, &#x27;video&#x27;: &lt;seleniumbase.undetected.webelement.WebElement (session=&quot;edc6d6316a3f26265dd41f5c2acfd52b&quot;, element=&quot;788EDDC1A12DC112B0ACB7A3CCB516DA_element_252&quot;)&gt;, &#x27;hashtag&#x27;: [&#x27;derechocivil&#x27;, &#x27;herencia&#x27;, &#x27;juicio&#x27;, &#x27;derechosucesorio&#x27;, &#x27;juiciosucesoriotestamentario&#x27;, &#x27;juiciosucesoriointestamentario&#x27;, &#x27;albacea&#x27;, &#x27;albaceatestamentario&#x27;, &#x27;albaceatestamento&#x27;], &#x27;author&#x27;: &#x27;davidarellanoortega&#x27;, &#x27;likes&#x27;: 5239, &#x27;comments&#x27;: 211, &#x27;shares&#x27;: 627, &#x27;saves&#x27;: 610, &#x27;video_id&#x27;: -1}, {&#x27;batch&#x27;: 2, &#x27;index&#x27;: 22, &#x27;music&#x27;: &#x27;original sound - Unbox Diaries&#x27;, &#x27;video&#x27;: &lt;seleniumbase.undetected.webelement.WebElement (session=&quot;edc6d6316a3f26265dd41f5c2acfd52b&quot;, element=&quot;788EDDC1A12DC112B0ACB7A3CCB516DA_element_236&quot;)&gt;, &#x27;hashtag&#x27;: [], &#x27;author&#x27;: &#x27;unboxdiaries&#x27;, &#x27;likes&#x27;: 37400, &#x27;comments&#x27;: 545, &#x27;shares&#x27;: 3828, &#x27;saves&#x27;: 758, &#x27;video_id&#x27;: -1}, {&#x27;batch&#x27;: 2, &#x27;index&#x27;: 23, &#x27;music&#x27;: &#x27;original sound - Disabled Magic Pass - Katie&#x27;, &#x27;video&#x27;: &lt;seleniumbase.undetected.webelement.WebElement (session=&quot;edc6d6316a3f26265dd41f5c2acfd52b&quot;, element=&quot;788EDDC1A12DC112B0ACB7A3CCB516DA_element_237&quot;)&gt;, &#x27;hashtag&#x27;: [&#x27;stitch&#x27;, &#x27;disneyland&#x27;, &#x27;disneyadult&#x27;, &#x27;disneyparks&#x27;, &#x27;disabled&#x27;, &#x27;spoonie&#x27;, &#x27;disneydaspass&#x27;, &#x27;wheelchairuser&#x27;, &#x27;intersectionality&#x27;], &#x27;author&#x27;: &#x27;disabledmagicpass&#x27;, &#x27;likes&#x27;: 2329, &#x27;comments&#x27;: 236, &#x27;shares&#x27;: 180, &#x27;saves&#x27;: 14, &#x27;video_id&#x27;: -1}, {&#x27;batch&#x27;: 2, &#x27;index&#x27;: 24, &#x27;music&#x27;: &#x27;Sad piano ballad (moist / BGM)(936730) - TrickSTAR MUSIC&#x27;, &#x27;video&#x27;: &lt;seleniumbase.undetected.webelement.WebElement (session=&quot;edc6d6316a3f26265dd41f5c2acfd52b&quot;, element=&quot;788EDDC1A12DC112B0ACB7A3CCB516DA_element_241&quot;)&gt;, &#x27;hashtag&#x27;: [], &#x27;author&#x27;: &#x27;mariyahholdings&#x27;, &#x27;likes&#x27;: 7505, &#x27;comments&#x27;: 0, &#x27;shares&#x27;: 726, &#x27;saves&#x27;: 224, &#x27;video_id&#x27;: -1}, {&#x27;batch&#x27;: 2, &#x27;index&#x27;: 25, &#x27;music&#x27;: &#x27;suara asli - Ryosaya&#x27;, &#x27;video&#x27;: &lt;seleniumbase.undetected.webelement.WebElement (session=&quot;edc6d6316a3f26265dd41f5c2acfd52b&quot;, element=&quot;788EDDC1A12DC112B0ACB7A3CCB516DA_element_234&quot;)&gt;, &#x27;hashtag&#x27;: [&#x27;kikisaputri&#x27;, &#x27;kaesang&#x27;, &#x27;fyp&#x27;, &#x27;fyp%E3%82%B7&#x27;], &#x27;author&#x27;: &#x27;ryojaya&#x27;, &#x27;likes&#x27;: 743400, &#x27;comments&#x27;: 2289, &#x27;shares&#x27;: 38200, &#x27;saves&#x27;: 5595, &#x27;video_id&#x27;: -1}, {&#x27;batch&#x27;: 2, &#x27;index&#x27;: 26, &#x27;music&#x27;: &#x27;original sound - Joey Nguyen&#x27;, &#x27;video&#x27;: &lt;seleniumbase.undetected.webelement.WebElement (session=&quot;edc6d6316a3f26265dd41f5c2acfd52b&quot;, element=&quot;788EDDC1A12DC112B0ACB7A3CCB516DA_element_233&quot;)&gt;, &#x27;hashtag&#x27;: [&#x27;military&#x27;, &#x27;marines&#x27;, &#x27;army&#x27;, &#x27;navy&#x27;, &#x27;airforce&#x27;, &#x27;militarylife&#x27;, &#x27;veteran&#x27;, &#x27;money&#x27;, &#x27;miltarytiktok&#x27;, &#x27;miltok&#x27;], &#x27;author&#x27;: &#x27;joeyngooyen&#x27;, &#x27;likes&#x27;: 86800, &#x27;comments&#x27;: 2452, &#x27;shares&#x27;: 3690, &#x27;saves&#x27;: 794, &#x27;video_id&#x27;: -1}, {&#x27;batch&#x27;: 2, &#x27;index&#x27;: 27, &#x27;music&#x27;: &#x27;original sound - Rene&#x27;, &#x27;video&#x27;: &lt;seleniumbase.undetected.webelement.WebElement (session=&quot;edc6d6316a3f26265dd41f5c2acfd52b&quot;, element=&quot;788EDDC1A12DC112B0ACB7A3CCB516DA_element_249&quot;)&gt;, &#x27;hashtag&#x27;: [&#x27;funnyvideos&#x27;, &#x27;funny&#x27;, &#x27;languages&#x27;, &#x27;polyglot&#x27;, &#x27;polyglotfromhome&#x27;, &#x27;polyglotchallenge&#x27;, &#x27;languages&#x27;, &#x27;gibberish&#x27;, &#x27;gibberishchallenge&#x27;, &#x27;languagelearning&#x27;, &#x27;languagelearningtips&#x27;, &#x27;languagelearningadvice&#x27;, &#x27;languagelearningcommunity&#x27;, &#x27;learninglanguagesontiktok&#x27;, &#x27;languagelearningchallenge&#x27;, &#x27;imitation&#x27;, &#x27;worldlanguages&#x27;, &#x27;impressions&#x27;, &#x27;arabic&#x27;, &#x27;arabictiktok&#x27;, &#x27;arabiclanguage&#x27;, &#x27;arabiclanguagelearning&#x27;, &#x27;learnarabiconline&#x27;, &#x27;swedish&#x27;, &#x27;learningswedishlanguange&#x27;, &#x27;learningswedish%F0%9F%87%B8%F0%9F%87%AA&#x27;, &#x27;swedenmemes%F0%9F%87%B8%F0%9F%87%AA&#x27;, &#x27;svenskatiktok&#x27;, &#x27;svenskaspr%C3%A5ket&#x27;, &#x27;german&#x27;, &#x27;germanlanguage%F0%9F%87%A9%F0%9F%87%AA&#x27;, &#x27;germanlanguagelearning&#x27;, &#x27;learngermanwithtiktok&#x27;, &#x27;deutschlernen%F0%9F%87%A9%F0%9F%87%AA&#x27;, &#x27;deutschesprache&#x27;, &#x27;easygermannews&#x27;, &#x27;easygerman_&#x27;, &#x27;germanymemes&#x27;, &#x27;viral&#x27;, &#x27;viralvideo&#x27;, &#x27;viraltiktok&#x27;, &#x27;fyp%E3%82%B7&#x27;, &#x27;foreigner&#x27;, &#x27;pov&#x27;, &#x27;memestiktok%F0%9F%98%82%F0%9F%98%82&#x27;], &#x27;author&#x27;: &#x27;rene.barcena&#x27;, &#x27;likes&#x27;: 1700000, &#x27;comments&#x27;: 4791, &#x27;shares&#x27;: 76900, &#x27;saves&#x27;: 2478, &#x27;video_id&#x27;: -1}, {&#x27;batch&#x27;: 2, &#x27;index&#x27;: 28, &#x27;music&#x27;: &#x27;Epic News - DM Production&#x27;, &#x27;video&#x27;: &lt;seleniumbase.undetected.webelement.WebElement (session=&quot;edc6d6316a3f26265dd41f5c2acfd52b&quot;, element=&quot;788EDDC1A12DC112B0ACB7A3CCB516DA_element_250&quot;)&gt;, &#x27;hashtag&#x27;: [&#x27;greenscreen&#x27;, &#x27;futbol&#x27;, &#x27;uruguay&#x27;, &#x27;bolivia&#x27;, &#x27;argentina&#x27;, &#x27;copaamerica&#x27;, &#x27;ecuador&#x27;], &#x27;author&#x27;: &#x27;guillefutbol_4&#x27;, &#x27;likes&#x27;: 92900, &#x27;comments&#x27;: 1501, &#x27;shares&#x27;: 3639, &#x27;saves&#x27;: 173, &#x27;video_id&#x27;: -1}, {&#x27;batch&#x27;: 2, &#x27;index&#x27;: 29, &#x27;music&#x27;: &#x27;sonido original - ˗ˏˋ ꒰ ♡ ꒱ ˎˊ˗&#x27;, &#x27;video&#x27;: &lt;seleniumbase.undetected.webelement.WebElement (session=&quot;edc6d6316a3f26265dd41f5c2acfd52b&quot;, element=&quot;788EDDC1A12DC112B0ACB7A3CCB516DA_element_238&quot;)&gt;, &#x27;hashtag&#x27;: [&#x27;fyp&#x27;, &#x27;humor&#x27;, &#x27;pumchulita&#x27;], &#x27;author&#x27;: &#x27;junnkx&#x27;, &#x27;likes&#x27;: 1600000, &#x27;comments&#x27;: 6751, &#x27;shares&#x27;: 115000, &#x27;saves&#x27;: 55700, &#x27;video_id&#x27;: -1}]
-
-
-***length of old batch: 30
-
-
-***length of old all videos on page:42
-
-Is there no overlap between old batch and new batch?:True
-
-***length of new all videos on page:42
-
-!!!!no new posts were added!!!!
-
-
-****BATCH #3
-
-
-There are #0 videos 
- and #0 posts were randomly liked successfully
-***old batch:[]
-
-
-***length of old batch: 0
-
-
-***length of old all videos on page:42
-
-Is there no overlap between old batch and new batch?:True
-
-***length of new all videos on page:42
-
-!!!!no new posts were added!!!!
-
-
-****BATCH #4
-
-
-There are #0 videos 
- and #0 posts were randomly liked successfully
-***old batch:[]
-
-
-***length of old batch: 0
-
-
-***length of old all videos on page:42
-
-Is there no overlap between old batch and new batch?:True
-
-***length of new all videos on page:42
-
-!!!!no new posts were added!!!!
-
-
-****BATCH #5
-
-
-There are #0 videos 
- and #0 posts were randomly liked successfully
-***old batch:[]
-
-
-***length of old batch: 0
-
-
-***length of old all videos on page:42
-
-Is there no overlap between old batch and new batch?:True
-
-***length of new all videos on page:42
-
-!!!!no new posts were added!!!!
-
+WARNING: Unable to get screenshot!
 <br/></div></td></tr></tbody></table></body></html>

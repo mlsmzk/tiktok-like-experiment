@@ -12,6 +12,7 @@ import numpy as np
 import csv
 from datetime import datetime
 import os.path
+import pyperclip
 
 """
 1 batch = the number of posts available on page before scrolling down and loading more.
@@ -19,6 +20,7 @@ import os.path
 
 class PageTiktok(BaseCase): #inherit BaseCase
     predefined_hashtag_list = ["viral","foryou"]
+    control_hashtag_list = []
     chromebrowser = Driver(uc=True)
     actions = ActionChains(chromebrowser)
     current_batch = []
@@ -106,17 +108,20 @@ class PageTiktok(BaseCase): #inherit BaseCase
         
     def get_video_id(self, video):
         try:
-            
-            id_info = video.find_element(By.XPATH, ".//*[@class='tiktok-web-player no-controls']")
-            video_id = id_info.get_attribute("id") if id_info else None
-
-            if video_id:
-                return video_id
-            else:
-                return None
-        except (NoSuchElementException, ValueError):
+            id_div = video.find_element(By.XPATH, ".//*[@class='css-11ma4ul-DivVideoPlayerContainer e1bh0wg714']")
+            #video_id = id_info.get_attribute("id") if id_info else None
+            if id_div:
+                self.chromebrowser.execute_script("arguments[0].dispatchEvent(new MouseEvent('dblclick', { bubbles: true, cancelable: true }));", id_div)
+                to_copy = self.chromebrowser.find_elements(By.XPATH, ".//*[@class='css-4tmqf2-LiItemWrapper e5bhsb11']")[2]
+                if to_copy:
+                    to_copy.click()
+                    copied_text = self.get_copied_text_from_clipboard()
+                    return copied_text
+        except (NoSuchElementException, ValueError, IndexError):
             print("Unable to retrieve the number of likes")
-            return -1
+            return None
+        
+    
 
     def fetch_tiktok(self):
         """
@@ -197,6 +202,24 @@ class PageTiktok(BaseCase): #inherit BaseCase
         print(f"\nThere are #{len(current_batch_info)} videos \n and #{num_of_posts_clicked} posts were randomly liked successfully")
         return video_liked
     
+    def like_videos_control(self,current_batch,predefined_hashtag_list):
+        """
+        in each video in current_batch, like it iff it contains a hashtag in the predefined hashtag list
+        """
+        num_of_posts_with_hashtag = 0
+        video_liked = []
+        num_of_posts_clicked = 0
+        current_batch_info = self.info_videos(current_batch)
+        for video_info in current_batch_info:
+            if video_info["hashtag"]:
+                if set(video_info["hashtag"]) & set(predefined_hashtag_list):
+                    num_of_posts_with_hashtag += 1
+                    if self.like_video(video_info["video"]): #if video was successfully liked
+                        video_liked.append(video_info)
+                        num_of_posts_clicked += 1
+        print(f"\nThere are #{num_of_posts_with_hashtag} videos with predefined hashtags \n and #{num_of_posts_clicked} posts were liked successfully")
+        return video_liked
+    
     def like_videos_with_hashtag(self,current_batch,predefined_hashtag_list):
         """
         in each video in current_batch, like it iff it contains a hashtag in the predefined hashtag list
@@ -270,10 +293,29 @@ class PageTiktok(BaseCase): #inherit BaseCase
             time.sleep(5)
             current_batch_info = self.info_videos(self.current_batch)
 
+            self.write_to_csv(current_batch_info, "like_by_control_data_all_videos.csv")  # all videos on page 
+            self.write_to_csv(liked_videos, "like_by_control_data_liked_videos.csv") #only the ones that were liked by hashtag
+            self.update_batch()
+
+    def iterate_through_batches_like_control(self, num_batches = 5):
+        """
+        Like posts in current batch after updating, then move on to the next batch
+        """
+        self.batch_num = 0
+        while num_batches > 0:  # if new batch appeared on foryou page
+            print(f"\n****ENTERING BATCH{6-num_batches}\n")
+            num_batches -= 1
+            self.batch_num += 1
+            liked_videos = self.like_videos_control(self.current_batch, self.control_hashtag_list)
+            time.sleep(5)
+            current_batch_info = self.info_videos(self.current_batch)
+
             self.write_to_csv(current_batch_info, "like_by_hashtag_data_all_videos.csv")  # all videos on page 
             self.write_to_csv(liked_videos, "like_by_hashtag_data_liked_videos.csv") #only the ones that were liked by hashtag
             self.update_batch()
-            
+
+
+
         
     def iterate_through_batches_like_random(self, batches=5):
         """
