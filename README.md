@@ -7,6 +7,7 @@ By: Miles Mezaki, Sandy Liu, Sarah Goldman, Caroline Jung, Johanna Lee, Audrey L
 
 
 ## (2/11 New!)
+#### Assumes you have cloned this repo and setup the environment. If not, read the instructions in ```How to run code```
 ### New testing method
 1. navigate into tests/tiktok. you will notice that there are two test files now, ```test_active.py``` and ```test_control.py```
 2. Open test_active.py <br>
