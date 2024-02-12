@@ -59,7 +59,4 @@ def clean_hashtags(df):
 
 clean_hashtags(dfs["r1_control_all"])
 
-
 #also count frequencies of these hashtags
-
-#JACCARD INDEX
