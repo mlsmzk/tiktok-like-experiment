@@ -30,6 +30,7 @@ class PageTiktok(BaseCase): #inherit BaseCase
         self.len_all_posts = None
         self.all_videos_on_page = []
         self.current_time = datetime.now().strftime("%m-%d-%H-%M")
+        self.current_batch_exists = True
 
 
 
@@ -250,7 +251,7 @@ class PageTiktok(BaseCase): #inherit BaseCase
         """
         updates batch by scrolling to the bottom 
         """
-        current_batch_exists = False
+        self.current_batch_exists = False
 
         self.actions.move_to_element(self.all_videos_on_page[-1]).perform()
         time.sleep(5)
@@ -272,11 +273,11 @@ class PageTiktok(BaseCase): #inherit BaseCase
         if self.current_batch: #if new videos were loaded
             print(f"\n***new batch: {self.info_videos(self.current_batch)}")
             print(f"\n***length of new batch: {len(self.current_batch)}\n")
-            current_batch_exists = True
+            self.current_batch_exists = True
         else:
             print("\n!!!!no new posts were added!!!!\n")
         
-        return current_batch_exists
+        return self.current_batch_exists
 
 
     def validate_no_overlapping_post(self, oldbatch, newbatch):
@@ -286,12 +287,13 @@ class PageTiktok(BaseCase): #inherit BaseCase
         return (not (set(oldbatch) & set(newbatch)))
     
 
-    def iterate_through_batches_like_by_hashtag(self, num_batches = 5):
+
+    def iterate_though_batches_like_by_hashtag(self, num_batches = 5):
         """
         Like posts in current batch after updating, then move on to the next batch
         """
         self.batch_num = 0
-        while num_batches > 0:  # if new batch appeared on foryou page
+        while num_batches > 0 and self.current_batch_exists:  # if new batch appeared on foryou page
             print(f"\n****ENTERING BATCH{6-num_batches}\n")
             num_batches -= 1
             self.batch_num += 1
@@ -301,14 +303,15 @@ class PageTiktok(BaseCase): #inherit BaseCase
 
             self.write_to_csv(current_batch_info, "like_by_control_data_all_videos.csv")  # all videos on page 
             self.write_to_csv(liked_videos, "like_by_control_data_liked_videos.csv") #only the ones that were liked by hashtag
-            self.update_batch()
+            if self.current_batch_exists:
+                self.update_batch()
 
     def iterate_through_batches_like_control(self, num_batches = 5):
         """
         Like posts in current batch after updating, then move on to the next batch
         """
         self.batch_num = 0
-        while num_batches > 0:  # if new batch appeared on foryou page
+        while num_batches > 0 and self.current_batch_exists:  # if new batch appeared on foryou page
             print(f"\n****ENTERING BATCH{6-num_batches}\n")
             num_batches -= 1
             self.batch_num += 1
@@ -318,7 +321,10 @@ class PageTiktok(BaseCase): #inherit BaseCase
 
             self.write_to_csv(current_batch_info, "like_by_hashtag_data_all_videos.csv")  # all videos on page 
             self.write_to_csv(liked_videos, "like_by_hashtag_data_liked_videos.csv") #only the ones that were liked by hashtag
-            self.update_batch()
+            if self.current_batch_exists:
+                self.update_batch()
+
+
 
 
 
