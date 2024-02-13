@@ -35,17 +35,17 @@ class PageTiktok(BaseCase): #inherit BaseCase
 
     def get_hashtag_list(self, scenario_num):
         if scenario_num == 1: 
-            return ["gaming", "fortnite", "videogames", "pcgaming", "epicgames", "gamergirl", "leaguetok", "gamingmemes"]
+            return ["gaming", "fortnite", "videogames", "pcgaming", "epicgames", "gamergirl", "leaguetok", "gamingmemes", "gamelancer", "league", "overwatch", "tiktokgaming", "xbox", "zelda", "switch", "godOfWar", "genshin", "gaminggenshin", "ps5", "ghostrecon", "arcade", "gameontiktok"]
         elif scenario_num == 2:
-            return ["5minutecrafts", "crafts", "handmade", "creative", "crafty", "decoration", "tutorial", "gifts", "aesthetic," "decor", "diy"]
+            return ["5minutecrafts", "crafts", "handmade", "creative", "crafty", "decoration", "tutorial", "gifts", "aesthetic," "decor", "diy", "pompoms", "craft", "doityourself", "making", "creativity", "tiktokcrafts", "craftsupplies", "craftshow", "craftspirits", "craftsy", "craftsmanship", "craftsforkids", "craftsforadults", "craftsforteenagers", "string", "cardboard", "diycraft", "design", "art"]
         elif scenario_num == 3:
             return ["Foodlover", "foodie", "foodtiktok", "asmr", "cooking", "eating", "yummy", "delicious", "mukbang", "eat", "recipe", "tiktokfood"]
         elif scenario_num == 4:
-            return ["makeuptutorial", "makeup", "beauty", "makeupartist", "makeuphacks", "tutorial", "eyeliner", "makeuptransformation", "grwn", "mua", "skincare", "makeuproutine", "makeupchallenge"]
+            return ["makeuptutorial", "makeup", "beauty", "makeupartist", "makeuphacks", "tutorial", "eyeliner", "makeuptransformation", "grwn", "mua", "skincare", "makeuproutine", "makeupchallenge","getreadywithme", "beautytutorial", "foundation", "concealer", "elf", "sephora", "cosmetics", "beautyblender", "lipstick", "glossier"]
         elif scenario_num == 5:
-            return ["Workout", "fitness", "gym", "lifter", "gymtok", "fitnessmotivation", "running", "bodybuilding", "fit", "fittok", "health", "weightloss", "muscle", "training", "fitnesstips"]
+            return ["Workout", "fitness", "gym", "lifter", "gymtok", "fitnessmotivation", "running", "bodybuilding", "fit", "fittok", "health", "weightloss", "muscle", "training", "fitnesstips", "legday", "lighting", "weights", "weight", "proteinpowder", "protein", "proteindrink", "fitnessmotivation", "exercise", "glutegrowth", "squats", "armday", "gains", "lululemon", "fitnessoutfit", "healthylifestyle", "fitnessjourney"]
         elif scenario_num == 6:
-            return ["Dance", "dancer", "music", "dancechallenge", "dancetutorial", "dancers", "lyric", "song", "spotify", "applemusic"]
+            return ["Dance", "dancer", "music", "dancechallenge", "dancetutorial", "dancers", "lyric", "song", "spotify", "applemusic", "hiphop", "dancing", "party", "dj", "choreography", "dancelife", "love", "fun", "trend", "tapdance", "jazz", "singer", "guitarplayer", "musicismylife", "concert", "musiclover", "classicalmusic", "musicianlifestyle", "musiciansoftoday", "taylorswift"]
         else: 
             return []
 
