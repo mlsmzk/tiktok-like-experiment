@@ -288,7 +288,7 @@ class PageTiktok(BaseCase): #inherit BaseCase
     
 
 
-    def iterate_though_batches_like_by_hashtag(self, num_batches = 5):
+    def iterate_through_batches_like_by_hashtag(self, num_batches = 5):
         """
         Like posts in current batch after updating, then move on to the next batch
         """
