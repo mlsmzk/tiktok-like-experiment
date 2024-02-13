@@ -5,6 +5,8 @@ By: Miles Mezaki, Sandy Liu, Sarah Goldman, Caroline Jung, Johanna Lee, Audrey L
 
 ##### The TikTok audit code is in the PageTiktok.py file in the page_objects folder. chrome_audit has not been updated.
 
+## (2/12 Update!)
+We realized that when new accounts are made, it only takes a few batches to reach the end of the "for you" page and thus we get an error in the ```update_batch()``` code. So we added code that calls ```update_batch()``` only when we know we haven't reached the end of the "for you" page. 
 
 ## (2/11 New!)
 #### Assumes you have cloned this repo and setup the environment. If not, read the instructions in ```How to run code```
