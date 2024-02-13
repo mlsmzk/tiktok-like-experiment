@@ -39,7 +39,7 @@ class PageTiktok(BaseCase): #inherit BaseCase
         elif scenario_num == 2:
             return ["5minutecrafts", "crafts", "handmade", "creative", "crafty", "decoration", "tutorial", "gifts", "aesthetic," "decor", "diy", "pompoms", "craft", "doityourself", "making", "creativity", "tiktokcrafts", "craftsupplies", "craftshow", "craftspirits", "craftsy", "craftsmanship", "craftsforkids", "craftsforadults", "craftsforteenagers", "string", "cardboard", "diycraft", "design", "art"]
         elif scenario_num == 3:
-            return ["Foodlover", "foodie", "foodtiktok", "asmr", "cooking", "eating", "yummy", "delicious", "mukbang", "eat", "recipe", "tiktokfood"]
+            return ["Foodlover", "foodie", "foodtiktok", "eatingsounds", "cooking", "eating", "yummy", "delicious", "mukbang", "eat", "recipe", "tiktokfood", "chicken", "fries", "foodietiktok", "foodvideo", "foodreview", "streetfood", "eatingvideo", "ramen", "foodvideos", "foodtok", "foodchallenge", "burger", "eatingshow", "eatingasmr", "Baking", "food", "homemadecooking", "homemade"]
         elif scenario_num == 4:
             return ["makeuptutorial", "makeup", "beauty", "makeupartist", "makeuphacks", "tutorial", "eyeliner", "makeuptransformation", "grwn", "mua", "skincare", "makeuproutine", "makeupchallenge","getreadywithme", "beautytutorial", "foundation", "concealer", "elf", "sephora", "cosmetics", "beautyblender", "lipstick", "glossier"]
         elif scenario_num == 5:
