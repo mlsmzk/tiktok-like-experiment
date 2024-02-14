@@ -9,7 +9,7 @@ def test_like_hashtag():
     page.fetch_tiktok()
     time.sleep(60)
     #page.chromebrowser.delete_all_cookies()
-    page.iterate_though_batches_like_by_hashtag()
+    page.iterate_through_batches_like_by_hashtag()
     time.sleep(10)
 
 
